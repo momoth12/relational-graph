@@ -1,0 +1,489 @@
+[
+  {
+    "canonical_name": "Pierre Rougon",
+    "aliases": [
+      "Rougon",
+      "Pierre",
+      "le marchand d’huile",
+      "le père Rougon"
+    ],
+    "description": "Ambitious and cunning head of the Rougon family, involved in political machinations to secure power in Plassans. Former oil merchant, he aims to capitalize on political upheaval for personal gain.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Félicité Rougon",
+    "aliases": [
+      "Félicité",
+      "madame Rougon",
+      "la vieille femme",
+      "petite",
+      "la vieille",
+      "ma bonne"
+    ],
+    "description": "Pierre Rougon's astute and manipulative wife, deeply involved in the political intrigues of Plassans and seeks to secure her family's fortune.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Eugène Rougon",
+    "aliases": [
+      "Eugène",
+      "l'aîné"
+    ],
+    "description": "Son of Pierre and Félicité, involved in the Bonapartist movement and provides political guidance to his family from Paris.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Aristide Rougon",
+    "aliases": [
+      "Aristide",
+      "le cadet"
+    ],
+    "description": "Son of Pierre and Félicité, a journalist with shifting political allegiances, initially a republican but opportunistic and seeks to align with the winning side.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Pascal Rougon",
+    "aliases": [
+      "Pascal",
+      "M. Pascal",
+      "le docteur Pascal",
+      "le médecin"
+    ],
+    "description": "Son of Pierre and Félicité, a doctor with a passion for science, living a modest life in Plassans, and helps the Macquart family during Antoine's illness.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Marthe Rougon",
+    "aliases": [
+      "Marthe"
+    ],
+    "description": "Daughter of Pierre and Félicité, married to François Mouret and living in Marseille.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Sidonie Rougon",
+    "aliases": [
+      "Sidonie"
+    ],
+    "description": "Daughter of Pierre and Félicité, married and living in Paris.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2"
+    ]
+  },
+  {
+    "canonical_name": "Maxime Rougon",
+    "aliases": [
+      "Maxime"
+    ],
+    "description": "Son of Aristide and Angèle, sent to college by his grandmother Félicité.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Antoine Macquart",
+    "aliases": [
+      "Macquart",
+      "Antoine",
+      "le frère"
+    ],
+    "description": "Pierre Rougon's half-brother, a schemer with a grudge against the Rougons, involved in republican activities and hopes to take revenge on the Rougons.",
+    "family_branch": "Macquart",
+    "chapters": [
+      "2",
+      "4",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Adélaïde Fouque",
+    "aliases": [
+      "Adélaïde",
+      "la mère",
+      "la jeune femme",
+      "tante Dide",
+      "Dide"
+    ],
+    "description": "Mother of Pierre and Antoine, known for her erratic behavior and scandalous relationship with Macquart. She suffers from a mental breakdown and remains detached from the political events.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "4",
+      "5",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Silvère Mouret",
+    "aliases": [
+      "Silvère"
+    ],
+    "description": "A young, idealistic republican and grandson of Adélaïde. He is involved in the uprising and deeply in love with Miette, ultimately executed.",
+    "family_branch": "Mouret",
+    "chapters": [
+      "1",
+      "4",
+      "5",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Miette Chantegreil",
+    "aliases": [
+      "Miette",
+      "la Chantegreil",
+      "la grande fille rouge",
+      "Marie"
+    ],
+    "description": "A young girl, deeply in love with Silvère, who joins the insurrection and carries the red flag. She is strong-willed and determined, but ultimately meets a tragic end.",
+    "family_branch": "other",
+    "chapters": [
+      "1",
+      "4",
+      "5",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Chantegreil",
+    "aliases": [
+      "le père de Miette"
+    ],
+    "description": "Miette's father, a poacher sent to the penal colony for killing a gendarme.",
+    "family_branch": "other",
+    "chapters": [
+      "1",
+      "5"
+    ]
+  },
+  {
+    "canonical_name": "Rébufat",
+    "aliases": [
+      "Rébufat",
+      "le méger du Jas-Meiffren",
+      "le père Rébufat",
+      "l'oncle"
+    ],
+    "description": "Miette's uncle, with whom she lives. He is described as harsh and imposing hard work on Miette.",
+    "family_branch": "other",
+    "chapters": [
+      "1",
+      "5"
+    ]
+  },
+  {
+    "canonical_name": "Justin Rébufat",
+    "aliases": [
+      "Justin",
+      "le cousin",
+      "le garçon"
+    ],
+    "description": "Miette's cousin, who harbors a deep hatred for her and insults her publicly.",
+    "family_branch": "other",
+    "chapters": [
+      "4",
+      "5",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Jean Macquart",
+    "aliases": [
+      "Jean"
+    ],
+    "description": "Son of Antoine Macquart, a hardworking young man who eventually leaves his father due to his laziness and exploitation.",
+    "family_branch": "Macquart",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Gervaise Macquart",
+    "aliases": [
+      "Gervaise"
+    ],
+    "description": "Daughter of Antoine Macquart, who is physically weak and eventually leaves with her partner Lantier.",
+    "family_branch": "Macquart",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Joséphine Gavaudan",
+    "aliases": [
+      "Fine"
+    ],
+    "description": "Antoine Macquart's wife, a hardworking woman who supports the family until her death.",
+    "family_branch": "Macquart",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Mouret",
+    "aliases": [],
+    "description": "Silvère's father, who committed suicide after the death of his wife Ursule.",
+    "family_branch": "Mouret",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Ursule Mouret",
+    "aliases": [
+      "Ursule"
+    ],
+    "description": "Silvère's mother, who died of a slow illness, leaving her children orphaned.",
+    "family_branch": "Mouret",
+    "chapters": [
+      "2",
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "François Mouret",
+    "aliases": [
+      "François"
+    ],
+    "description": "Silvère's older brother, a diligent and sober young man who works for his uncle Pierre Rougon.",
+    "family_branch": "Mouret",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Angèle Sicardot",
+    "aliases": [
+      "Angèle",
+      "la femme d'Aristide"
+    ],
+    "description": "Wife of Aristide Rougon, known for her appetite and love of flashy clothes.",
+    "family_branch": "Rougon",
+    "chapters": [
+      "2",
+      "3"
+    ]
+  },
+  {
+    "canonical_name": "Commandant Sicardot",
+    "aliases": [
+      "le commandant Sicardot",
+      "Sicardot"
+    ],
+    "description": "A retired military officer and father-in-law of Aristide, he is a staunch Bonapartist and supports the Rougons' political ambitions.",
+    "family_branch": "other",
+    "chapters": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "M. de Carnavant",
+    "aliases": [
+      "le marquis de Carnavant",
+      "le marquis"
+    ],
+    "description": "An elderly nobleman with ties to the Rougon family, he is involved in the political intrigues of Plassans and supports the legitimist cause.",
+    "family_branch": "other",
+    "chapters": [
+      "3",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "M. Isidore Granoux",
+    "aliases": [
+      "Granoux",
+      "M. Isidore",
+      "Monsieur Isidore"
+    ],
+    "description": "A retired almond merchant and member of the municipal council, he is a conservative and a regular at the Rougon's political gatherings.",
+    "family_branch": "other",
+    "chapters": [
+      "3",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "M. Roudier",
+    "aliases": [
+      "Roudier",
+      "le commandant Roudier"
+    ],
+    "description": "A wealthy retired bonnetier and Orléanist, he is influential in Plassans and a key figure in the conservative circle around the Rougons.",
+    "family_branch": "other",
+    "chapters": [
+      "3",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Vuillet",
+    "aliases": [
+      "le sieur Vuillet",
+      "le libraire"
+    ],
+    "description": "A bookseller and publisher of the Gazette de Plassans, he is a conservative and supports the clergy's interests in the political landscape of Plassans.",
+    "family_branch": "other",
+    "chapters": [
+      "3",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "M. Garçonnet",
+    "aliases": [
+      "le maire",
+      "M. le maire",
+      "monsieur le maire",
+      "M. Garçonnet"
+    ],
+    "description": "The mayor of Plassans, a legitimist who is cautious about the political changes and maintains order in the town.",
+    "family_branch": "other",
+    "chapters": [
+      "5",
+      "3",
+      "4",
+      "7",
+      "6"
+    ]
+  },
+  {
+    "canonical_name": "M. Peirotte",
+    "aliases": [
+      "Peirotte",
+      "le receveur particulier"
+    ],
+    "description": "The deceased former tax collector, whose position Pierre Rougon hopes to obtain.",
+    "family_branch": "other",
+    "chapters": [
+      "3",
+      "5",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Burgat",
+    "aliases": [
+      "Burgat le forgeron"
+    ],
+    "description": "A blacksmith from Alboise who joins the insurgents.",
+    "family_branch": "other",
+    "chapters": [
+      "1"
+    ]
+  },
+  {
+    "canonical_name": "Cassoute",
+    "aliases": [],
+    "description": "A terrassier who follows Antoine Macquart's orders during the uprising.",
+    "family_branch": "other",
+    "chapters": [
+      "4"
+    ]
+  },
+  {
+    "canonical_name": "Rengade",
+    "aliases": [
+      "le gendarme",
+      "le borgne"
+    ],
+    "description": "A gendarme injured by Silvère during the uprising, who haunts Silvère's thoughts.",
+    "family_branch": "other",
+    "chapters": [
+      "4",
+      "5",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Masson",
+    "aliases": [
+      "le colonel Masson"
+    ],
+    "description": "A military officer leading the troops against the insurgents.",
+    "family_branch": "other",
+    "chapters": [
+      "5",
+      "6"
+    ]
+  },
+  {
+    "canonical_name": "Blériot",
+    "aliases": [
+      "M. de Blériot",
+      "le préfet du département"
+    ],
+    "description": "The prefect of the department, accompanying the military forces against the insurgents.",
+    "family_branch": "other",
+    "chapters": [
+      "5",
+      "6",
+      "7"
+    ]
+  },
+  {
+    "canonical_name": "Mourgue",
+    "aliases": [
+      "Mourgue"
+    ],
+    "description": "A peasant from Poujols, executed alongside Silvère.",
+    "family_branch": "other",
+    "chapters": [
+      "7"
+    ]
+  }
+]

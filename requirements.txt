@@ -1,0 +1,10 @@
+openai
+python-dotenv
+networkx
+pygraphviz
+matplotlib
+tqdm
+
+# Note: pygraphviz requires Graphviz system library.
+# On conda: conda install -c conda-forge graphviz pygraphviz
+# On Colab: !apt-get install -y graphviz libgraphviz-dev && pip install pygraphviz

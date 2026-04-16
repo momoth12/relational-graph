@@ -1,0 +1,816 @@
+[
+  {
+    "source": "Félicité Rougon",
+    "target": "M. de Carnavant",
+    "type": "acquaintance",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Vuillet",
+    "type": "acquaintance",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Mourgue",
+    "target": "Silvère Mouret",
+    "type": "acquaintance",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Gervaise Macquart",
+    "target": "Pascal Rougon",
+    "type": "cousin",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Justin Rébufat",
+    "target": "Miette Chantegreil",
+    "type": "cousin",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Silvère Mouret",
+    "type": "cousin",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Justin Rébufat",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Aristide Rougon",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Eugène Rougon",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Marthe Rougon",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Pascal Rougon",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Sidonie Rougon",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Silvère Mouret",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Félicité Rougon",
+    "type": "in_law",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Commandant Sicardot",
+    "type": "in_law",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "François Mouret",
+    "target": "Pierre Rougon",
+    "type": "in_law",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Miette Chantegreil",
+    "target": "Silvère Mouret",
+    "type": "lover",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Antoine Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Pierre Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Ursule Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Maxime Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Gervaise Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Jean Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Maxime Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Chantegreil",
+    "target": "Miette Chantegreil",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Eugène Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Marthe Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Sidonie Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Aristide Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Eugène Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Marthe Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Pascal Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Sidonie Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Ursule Mouret",
+    "target": "François Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Ursule Mouret",
+    "target": "Silvère Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Commandant Sicardot",
+    "target": "Félicité Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Commandant Sicardot",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "M. de Carnavant",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Vuillet",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "M. Isidore Granoux",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Vuillet",
+    "type": "political_ally",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Aristide Rougon",
+    "type": "political_opponent",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Félicité Rougon",
+    "type": "political_opponent",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "M. Isidore Granoux",
+    "type": "political_opponent",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "M. Roudier",
+    "type": "political_opponent",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Ursule Mouret",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Eugène Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Marthe Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Pascal Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Sidonie Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Marthe Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Pascal Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Sidonie Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "François Mouret",
+    "target": "Silvère Mouret",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Marthe Rougon",
+    "target": "Pascal Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Marthe Rougon",
+    "target": "Sidonie Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Sidonie Rougon",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Ursule Mouret",
+    "type": "sibling",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Aristide Rougon",
+    "type": "spouse",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Joséphine Gavaudan",
+    "type": "spouse",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "François Mouret",
+    "target": "Marthe Rougon",
+    "type": "spouse",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Pierre Rougon",
+    "type": "spouse",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Mouret",
+    "target": "Ursule Mouret",
+    "type": "spouse",
+    "directed": false,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Aristide Rougon",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Eugène Rougon",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Marthe Rougon",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pascal Rougon",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Sidonie Rougon",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Silvère Mouret",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  },
+  {
+    "source": "Rébufat",
+    "target": "Miette Chantegreil",
+    "type": "uncle_nephew",
+    "directed": true,
+    "confidence": 1.0,
+    "passages": [
+      "[LLM validation]"
+    ],
+    "weight": 1
+  }
+]

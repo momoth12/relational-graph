@@ -1,0 +1,975 @@
+[
+  {
+    "source": "Miette Chantegreil",
+    "target": "Silvère Mouret",
+    "type": "lover",
+    "directed": false,
+    "passages": [
+      "Silvère aimait Miette",
+      "Miette avait refusé le bras de Silvère",
+      "Miette et Silvère, ces grands enfants avides d’amour",
+      "souriant au jeune homme chaque fois qu’il lui jetait un regard de tendresse",
+      "Elle le tint serré entre ses bras",
+      "Ils restaient muets, étroitement serrés l’un contre l’autre",
+      "Les jeunes gens, jusqu’à cette nuit de trouble, avaient vécu une de ces naïves idylles"
+    ],
+    "weight": 8,
+    "confidence": 1.0
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Pierre Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Pierre Rougon était un fils de paysan"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Antoine Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Adélaïde garda auprès d’elle ces derniers, Antoine",
+      "Adélaïde, dans l’indifférence profonde",
+      "La pauvre femme répétait",
+      "Il revint chez sa mère",
+      "La malheureuse femme ne pouvait",
+      "Il lui demanda si elle n’avait pas",
+      "Il essaya d’abord d’intéresser Adélaïde",
+      "la pauvre femme, si molle et si endormie",
+      "Il se contenta d’ajouter qu’elle était",
+      "Adélaïde vit sans aucun regret partir"
+    ],
+    "weight": 10,
+    "confidence": 1.0
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Ursule Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Adélaïde garda auprès d’elle ces derniers, ... Ursule"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Ursule Mouret",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Pierre, l’enfant légitime, domina dès le bas âge son frère et sa sœur"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Pierre, l’enfant légitime, domina dès le bas âge son frère et sa sœur",
+      "son frère inventant mille prétextes",
+      "Pierre s’était emparé de la fortune",
+      "sa rancune contre son frère",
+      "courut chez Pierre, qu’il avait prévenu",
+      "ne m’échauffez pas la bile",
+      "me le rendras-tu, voleur",
+      "son frère bégayait, exaspéré",
+      "mener à bien une campagne contre son frère",
+      "la certitude qu’il avait les mains liées",
+      "Il courait les rues, contant son histoire",
+      "passer dix fois par jour devant le magasin",
+      "la conduite de son frère affolait",
+      "l’attitude d’Antoine devenait intolérable",
+      "violente querelle s’engagea entre lui et son frère",
+      "vous êtes malheureux et j’ai pitié de vous",
+      "nous avons la même mère",
+      "je le fais par bonté et non par crainte",
+      "offre brusque de cent francs éblouit",
+      "c’était sa part, dix mille francs",
+      "Pierre impatienté parlait de les jeter",
+      "camarade d’Antoine, enthousiasmé",
+      "Antoine déclara, en effet, d’un air rechigné",
+      "Antoine eut vite bu et mangé",
+      "n’ayant aucun métier",
+      "il ne réussit pas à les effrayer",
+      "Pierre profita même de cette occasion",
+      "Antoine eut beau reprendre ses accusations : la ville, qui connaissait la munificence de son frère",
+      "Pierre était son frère",
+      "Rougon, avec un pressentiment qui ne le trompa pas, se dit en lui-même : — Il y a du Macquart là-dessous.",
+      "Rougon fit lier solidement les poings de Macquart",
+      "Rougon devint blême. Il eut une peur atroce que Macquart ne parlât",
+      "Rougon prit une décision héroïque.",
+      "Macquart était enfermé... à la pensée que son frère se carrait",
+      "Macquart demanda de nouveau à son frère"
+    ],
+    "weight": 35,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Ursule Mouret",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Pierre, l’enfant légitime, domina dès le bas âge son frère et sa sœur"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Mouret",
+    "target": "Ursule Mouret",
+    "type": "lover",
+    "directed": false,
+    "passages": [
+      "Un ouvrier chapelier du faubourg, nommé Mouret, se prit d’une belle tendresse pour la jeune fille"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Pierre Rougon",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "Pierre se disait que l’argent arrangerait tout",
+      "Félicité, le nez le plus fin de la famille, comprit qu’ils étaient enfin sur la bonne piste. Elle se mit à tourner autour de son mari",
+      "Félicité désespérée",
+      "La vaniteuse petite femme souffrait",
+      "son mari arriva à son secours",
+      "Rougon se fâcha",
+      "Félicité ne put s’empêcher de reprocher à son mari",
+      "Il espérait que Félicité lui donnerait des renseignements exacts.",
+      "Félicité lui jetait la clef du hangar",
+      "Félicité ne s’était pas couchée.",
+      "Celui-ci, soufflant, entra dans le salon jaune",
+      "Elle lui sauta au cou ; elle l’embrassa.",
+      "Hein ! c’est à moi que tu dois tout cela !",
+      "Félicité coucha son mari",
+      "Pierre, qui se rasait... Elle le tourna entre ses mains comme un enfant",
+      "Rougon, quand il se confessa à Félicité",
+      "Ils se regardèrent, comme étonnés eux-mêmes de leur crime.",
+      "Rougon accourut, se jeta au cou de sa femme.",
+      "Mais sa femme le prit à part",
+      "Félicité pleura. Son mari décoré !"
+    ],
+    "weight": 20,
+    "confidence": 1.0
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Eugène Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Aristide, le plus jeune des fils Rougon, était opposé à Eugène",
+      "Deux jours avant son retour à Paris, Eugène rencontra sur le cours Sauvaire son frère Aristide",
+      "Surtout, défiez-vous d’Aristide, c’est un brouillon qui gâterait tout."
+    ],
+    "weight": 3,
+    "confidence": 1.0
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Pascal Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Pascal, celui qui était né entre Eugène et Aristide"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Pascal Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Pascal, celui qui était né entre Eugène et Aristide"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Aristide Rougon",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "Aristide se laissa marier"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "M. de Carnavant",
+    "type": "acquaintance",
+    "directed": false,
+    "passages": [
+      "Le marquis de Carnavant, ce noble qui, selon la chronique scandaleuse de la ville, avait connu intimement la mère de Félicité"
+    ],
+    "weight": 1,
+    "confidence": 0.7
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "M. de Carnavant",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Le marquis, d’ailleurs, qui ne manquait pas une réunion, apaisait par sa présence les petites querelles",
+      "Le marquis murmura quelques mots d’un air fin à l’oreille de Félicité.",
+      "Sous les arbres de la promenade, elle rencontra M. de Carnavant"
+    ],
+    "weight": 3,
+    "confidence": 0.9
+  },
+  {
+    "source": "M. Isidore Granoux",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Un ancien marchand d’amandes, membre du conseil municipal, M. Isidore Granoux, était comme le chef de ce groupe.",
+      "Pierre lui proposa d’aller chercher Granoux.",
+      "Rougon eut une joie chaude. Il fit répéter à Granoux",
+      "Roudier et Granoux vinrent le tirer de cette béatitude.",
+      "Granoux parut. Il s’arrêta un instant sur le seuil",
+      "Granoux marcha droit vers Rougon.",
+      "Rougon, gagné par l’émotion, l’interrompit",
+      "Rougon demanda quelques minutes pour conférer avec MM. Granoux",
+      "Rougon prendrait le titre de président de la commission municipale",
+      "Ces messieurs se jurèrent un appui mutuel",
+      "Granoux et Rougon, brisés par les émotions",
+      "Pierre alla droit à la mairie... Il envoya simplement un mot à Roudier",
+      "Granoux se jeta dans les bras de son cher président."
+    ],
+    "weight": 13,
+    "confidence": 1.0
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Commandant Sicardot",
+    "type": "in-law",
+    "directed": false,
+    "passages": [
+      "Mais la plus forte tête du salon jaune était à coup sûr le commandant Sicardot, le beau-père d’Aristide."
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Vuillet",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "On voyait aussi, chez les Rougon, un personnage aux mains humides, aux regards louches, le sieur Vuillet",
+      "Rougon, en s’en allant, prit Vuillet à part"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Pierre Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "En avril 1849, Eugène quitta brusquement Paris et vint passer quinze jours auprès de son père.",
+      "Rougon recevait régulièrement, tous les quinze jours, une lettre de son fils Eugène"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Eugène Rougon",
+    "target": "Félicité Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Ma chère mère, répondit Eugène avec un sourire, vous avez trop douté de moi pour que je vous confie aujourd’hui mes espérances",
+      "Elle souffrait de la méfiance d’Eugène.",
+      "la lettre d’Eugène qu’elle avait remise"
+    ],
+    "weight": 3,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Eugène Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Après le départ de son fils aîné, Pierre Rougon continua à vivre en pleine réaction.",
+      "Et ce diable d’Eugène qui ne m’écrit pas",
+      "la nomination de son père à une recette particulière"
+    ],
+    "weight": 3,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Félicité Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Pascal, pour ne pas la chagriner, vint donc passer quelques soirées dans le salon jaune."
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Commandant Sicardot",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Le commandant avait, en effet, de concert avec Rougon, caché, dans une sorte d’écurie, près des remparts, une provision de cartouches"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Commandant Sicardot",
+    "target": "Félicité Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Le commandant s’arrêta, étonné."
+    ],
+    "weight": 1,
+    "confidence": 0.7
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Adélaïde Fouque",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Il n’épargna même pas son père"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Mouret",
+    "target": "Ursule Mouret",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "ouvrier chapelier qui avait épousé sa sœur Ursule",
+      "Mouret lui dit nettement qu’il s’était habitué",
+      "Les larmes qui montèrent aux yeux de Mouret",
+      "La mort de sa femme, qu’il adorait, fut pour Mouret un coup de foudre"
+    ],
+    "weight": 4,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Félicité Rougon",
+    "type": "in-laws",
+    "directed": false,
+    "passages": [
+      "Félicité, voulant en finir, appela cet homme",
+      "Tous deux étaient gris",
+      "Félicité recula en murmurant",
+      "mon mari vous donnera deux cents francs",
+      "En se retirant, l’ivrogne qui accompagnait",
+      "Antoine occupait une grande chambre",
+      "la ville, qui connaissait la munificence de son frère, dont Félicité avait fait grand bruit",
+      "Félicité, qui comprenait que les opinions"
+    ],
+    "weight": 8,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Joséphine Gavaudan",
+    "type": "lover",
+    "directed": false,
+    "passages": [
+      "Antoine Macquart lia connaissance avec Fine à la halle"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Joséphine Gavaudan",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "Le soir même des noces, le jeune homme vint habiter le logement de sa femme",
+      "Antoine Macquart vivait ainsi de sa femme"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Jean Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Le fils des Macquart, Jean, naquit trois ans plus tard",
+      "Jean, sevré de tout plaisir"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Gervaise Macquart",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "La seconde fille, Gervaise, née l’année suivante",
+      "Gervaise était une sotte"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Joséphine Gavaudan",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Les Macquart eurent trois enfants"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "political_opponent",
+    "directed": false,
+    "passages": [
+      "espérance de se venger enfin des Rougon",
+      "Macquart, poussé et enhardi par ses haines"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "M. Isidore Granoux",
+    "type": "political_opponent",
+    "directed": false,
+    "passages": [
+      "Granoux arriva furieux"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "M. Roudier",
+    "type": "political_opponent",
+    "directed": false,
+    "passages": [
+      "Granoux et Roudier leur reprochaient"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "M. Isidore Granoux",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "présenter des excuses à Granoux",
+      "Granoux et Rougon, brisés par les émotions"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "political_enemy",
+    "directed": false,
+    "passages": [
+      "évitez l’homme dont il vient d’être question, et que je renie formellement",
+      "les époux ne doutèrent pas un instant que la lettre fût l’œuvre d’Antoine"
+    ],
+    "weight": 2,
+    "confidence": 0.9
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Félicité Rougon",
+    "type": "political_enemy",
+    "directed": false,
+    "passages": [
+      "évitez l’homme dont il vient d’être question, et que je renie formellement",
+      "les époux ne doutèrent pas un instant que la lettre fût l’œuvre d’Antoine"
+    ],
+    "weight": 2,
+    "confidence": 0.9
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Aristide Rougon",
+    "type": "political_enemy",
+    "directed": false,
+    "passages": [
+      "n’était point assez sot pour faire cause commune avec un homme tel que son oncle"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "François Mouret",
+    "target": "Marthe Rougon",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "De 1840 à 1844, ils eurent trois enfants"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "François Mouret",
+    "target": "Marthe Rougon",
+    "type": "lover",
+    "directed": false,
+    "passages": [
+      "Les deux jeunes gens s’étaient aimés tout d’un coup"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Adélaïde Fouque",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Pierre s’était rendu coupable, en faisant signer un reçu de cinquante mille francs à sa mère",
+      "Rougon, vers cinq heures du matin, osa enfin sortir de chez sa mère."
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "François Mouret",
+    "type": "uncle_nephew",
+    "directed": true,
+    "passages": [
+      "entra, à titre de commis, chez son oncle Rougon"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Silvère Mouret",
+    "type": "uncle_nephew",
+    "directed": true,
+    "passages": [
+      "le complice qu’il cherchait dans le second fils Mouret, Silvère",
+      "Silvère s’indignait contre l’oncle Pierre"
+    ],
+    "weight": 2,
+    "confidence": 0.9
+  },
+  {
+    "source": "Ursule Mouret",
+    "target": "François Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Elle laissait trois enfants : une fille de dix-huit ans, Hélène, mariée à un employé, et deux garçons, le fils aîné, François"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Ursule Mouret",
+    "target": "Silvère Mouret",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Et le dernier venu, pauvre créature à peine âgée de six ans, qui se nommait Silvère"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Silvère Mouret",
+    "type": "uncle_nephew",
+    "directed": true,
+    "passages": [
+      "Antoine chercha donc à attirer Silvère chez lui",
+      "ni le frère de Silvère, ni Silvère lui-même"
+    ],
+    "weight": 2,
+    "confidence": 0.9
+  },
+  {
+    "source": "Adélaïde Fouque",
+    "target": "Silvère Mouret",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "passages": [
+      "Lorsque sa grand’mère...demanda à l’emmener",
+      "C’était Silvère qui tirait pour tante Dide l’eau nécessaire au ménage",
+      "cheminée de tante Dide"
+    ],
+    "weight": 3,
+    "confidence": 1.0
+  },
+  {
+    "source": "Gervaise Macquart",
+    "target": "Pascal Rougon",
+    "type": "cousin",
+    "directed": false,
+    "passages": [
+      "mon cousin Pascal a été bon pour nous"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "passages": [
+      "Silvère s’indignait contre l’oncle Pierre"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "passages": [
+      "Silvère, d’un bond, s’était jeté sur lui"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Pierre Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "Il rencontra dans la foule son frère Pascal"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Miette Chantegreil",
+    "target": "Chantegreil",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Miette avait à peine neuf ans, lorsque son père fut envoyé au bagne"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Justin Rébufat",
+    "target": "Miette Chantegreil",
+    "type": "cousin",
+    "directed": false,
+    "passages": [
+      "Les meilleures heures de Justin étaient celles où il parvenait à la faire gronder"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Miette Chantegreil",
+    "target": "Rébufat",
+    "type": "uncle_niece",
+    "directed": false,
+    "passages": [
+      "Rébufat se laissa peu à peu aller à traiter Miette en valet de ferme"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Silvère Mouret",
+    "type": "cousins",
+    "directed": false,
+    "passages": [
+      "Silvère se rencontra face à face avec son cousin, le docteur Pascal"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Silvère Mouret",
+    "type": "family",
+    "directed": false,
+    "passages": [
+      "carabine de Macquart, que Silvère avait jetée"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "enemy",
+    "directed": false,
+    "passages": [
+      "Il parla de Macquart.",
+      "Tu oublies Macquart",
+      "sa haine contre les Rougon",
+      "Macquart aperçut distinctement... Rougon qui cherchait à viser."
+    ],
+    "weight": 4,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Vuillet",
+    "type": "acquaintance",
+    "directed": false,
+    "passages": [
+      "Et Vuillet ?",
+      "Vuillet entra. Il salua humblement",
+      "Vuillet avait fait ses petites affaires tout seul.",
+      "Où êtes-vous donc passé ?"
+    ],
+    "weight": 4,
+    "confidence": 0.8
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Aristide Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "elle aperçut Aristide qui rôdait",
+      "Entre donc, lui dit sa mère",
+      "Ta main te fait toujours souffrir ?",
+      "Tu as entendu parler de la belle conduite de ton père ?",
+      "Moi, à ta place, j’agirais très-carrément.",
+      "Ne va pas recommencer tes bêtises."
+    ],
+    "weight": 6,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Silvère Mouret",
+    "type": "family_ties",
+    "directed": false,
+    "passages": [
+      "Pierre se souvint du sang qui couvrait les mains de Silvère."
+    ],
+    "weight": 1,
+    "confidence": 0.7
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "se souvenant des conseils de sa femme"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Aristide Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Est-ce qu’Aristide, demanda-t-il",
+      "il vit Aristide qui rôdait autour du champ de poutres."
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Eugène Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Jusqu’à nos enfants qui nous abandonnent",
+      "Félicité avait eu soin, dès le jeudi, d'envoyer à son fils"
+    ],
+    "weight": 2,
+    "confidence": 1.0
+  },
+  {
+    "source": "Félicité Rougon",
+    "target": "Vuillet",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Un traité d’alliance fut conclu"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Pierre Rougon",
+    "type": "political_ally",
+    "directed": false,
+    "passages": [
+      "Laisse-moi faire, j’irai demain trouver Macquart",
+      "vous viendrez reprendre la mairie."
+    ],
+    "weight": 2,
+    "confidence": 0.7
+  },
+  {
+    "source": "Antoine Macquart",
+    "target": "Aristide Rougon",
+    "type": "sibling",
+    "directed": false,
+    "passages": [
+      "personne, dans la famille, ne l’avait soutenu : ni Aristide"
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Pierre Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Mon père a sauvé la ville, dit Aristide"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Félicité Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Félicité lui fit aussi embrasser Aristide"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Commandant Sicardot",
+    "type": "spouse",
+    "directed": false,
+    "passages": [
+      "Quand Angèle revint, elle lui dit de sa voix traînante"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Silvère Mouret",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "passages": [
+      "il était surtout très-inquiet sur le sort réservé à Silvère"
+    ],
+    "weight": 1,
+    "confidence": 0.9
+  },
+  {
+    "source": "Pascal Rougon",
+    "target": "Adélaïde Fouque",
+    "type": "grandparent_grandchild",
+    "directed": true,
+    "passages": [
+      "Je viens de trouver ma pauvre grand’mère au plus mal."
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Pierre Rougon",
+    "target": "Pascal Rougon",
+    "type": "parent_child",
+    "directed": true,
+    "passages": [
+      "Il venait d'apercevoir son fils Pascal"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Angèle Sicardot",
+    "target": "Félicité Rougon",
+    "type": "in-laws",
+    "directed": false,
+    "passages": [
+      "Angèle était sur le canapé, à côté de sa belle-mère"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Aristide Rougon",
+    "target": "Commandant Sicardot",
+    "type": "in-laws",
+    "directed": false,
+    "passages": [
+      "Sicardot vint complimenter son gendre"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  },
+  {
+    "source": "Justin Rébufat",
+    "target": "Silvère Mouret",
+    "type": "enemy",
+    "directed": false,
+    "passages": [
+      "La tête blafarde de Justin riait."
+    ],
+    "weight": 1,
+    "confidence": 0.8
+  },
+  {
+    "source": "Mourgue",
+    "target": "Silvère Mouret",
+    "type": "fellow prisoners",
+    "directed": false,
+    "passages": [
+      "Silvère, comme tous les autres prisonniers, avait un compagnon de chaîne"
+    ],
+    "weight": 1,
+    "confidence": 1.0
+  }
+]

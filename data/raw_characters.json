@@ -1,0 +1,799 @@
+{
+  "preface": [],
+  "1": [
+    {
+      "name": "Silvère",
+      "aliases": [
+        "Silvère"
+      ],
+      "description": "A young man of about seventeen, characterized by his vigorous appearance and youthful enthusiasm. He is involved in the republican insurgency and is deeply in love with Miette."
+    },
+    {
+      "name": "Miette",
+      "aliases": [
+        "Miette",
+        "la Chantegreil"
+      ],
+      "description": "A thirteen-year-old girl on the cusp of womanhood, strong and full of life. She is in love with Silvère and is the daughter of a man who is in prison, which causes her some social stigma."
+    },
+    {
+      "name": "Chantegreil",
+      "aliases": [
+        "Chantegreil",
+        "le père de Miette"
+      ],
+      "description": "Miette's father, who is in prison for killing a gendarme. He is remembered by some as an honest man, despite his crime."
+    },
+    {
+      "name": "Rébufat",
+      "aliases": [
+        "Rébufat",
+        "le méger du Jas-Meiffren"
+      ],
+      "description": "Miette's uncle, with whom she lives. He is described as harsh and imposing hard work on Miette."
+    },
+    {
+      "name": "tante Dide",
+      "aliases": [
+        "tante Dide"
+      ],
+      "description": "Silvère's aunt, who is mentioned as someone who would be worried if she saw Silvère taking his gun."
+    },
+    {
+      "name": "Burgat",
+      "aliases": [
+        "Burgat le forgeron"
+      ],
+      "description": "A blacksmith from Alboise who joins the insurgents."
+    },
+    {
+      "name": "Antoine",
+      "aliases": [
+        "l'oncle Antoine"
+      ],
+      "description": "Silvère's uncle, who is a worker and has taught Silvère to love the republic."
+    }
+  ],
+  "2": [
+    {
+      "name": "Pierre Rougon",
+      "aliases": [
+        "Rougon",
+        "Pierre"
+      ],
+      "description": "Son of a peasant, ambitious and calculating, he becomes the head of the Rougon family and plays a significant role in the family's rise."
+    },
+    {
+      "name": "Adélaïde Fouque",
+      "aliases": [
+        "Adélaïde",
+        "la mère",
+        "la jeune femme"
+      ],
+      "description": "Mother of Pierre Rougon, known for her erratic behavior and scandalous relationship with Macquart."
+    },
+    {
+      "name": "Macquart",
+      "aliases": [
+        "ce gueux de Macquart"
+      ],
+      "description": "A notorious and disreputable man, involved with Adélaïde, and father to her illegitimate children."
+    },
+    {
+      "name": "Antoine Macquart",
+      "aliases": [
+        "Antoine",
+        "le frère"
+      ],
+      "description": "Illegitimate son of Adélaïde and Macquart, known for his lazy and cunning nature."
+    },
+    {
+      "name": "Ursule Macquart",
+      "aliases": [
+        "Ursule",
+        "la sœur"
+      ],
+      "description": "Illegitimate daughter of Adélaïde and Macquart, described as frail and resembling her mother."
+    },
+    {
+      "name": "Félicité Puech",
+      "aliases": [
+        "Félicité",
+        "la femme de Pierre"
+      ],
+      "description": "Wife of Pierre Rougon, ambitious and cunning, she dreams of wealth and social status."
+    },
+    {
+      "name": "Eugène Rougon",
+      "aliases": [
+        "Eugène",
+        "l'aîné"
+      ],
+      "description": "Eldest son of Pierre and Félicité, ambitious with a desire for power, he moves to Paris sensing political change."
+    },
+    {
+      "name": "Aristide Rougon",
+      "aliases": [
+        "Aristide",
+        "le cadet"
+      ],
+      "description": "Youngest son of Pierre and Félicité, known for his cunning and desire for quick wealth."
+    },
+    {
+      "name": "Pascal Rougon",
+      "aliases": [
+        "Pascal",
+        "M. Pascal"
+      ],
+      "description": "Middle son of Pierre and Félicité, a doctor with a passion for science, living a modest life in Plassans."
+    },
+    {
+      "name": "Angèle Sicardot",
+      "aliases": [
+        "Angèle",
+        "la femme d'Aristide"
+      ],
+      "description": "Wife of Aristide Rougon, known for her appetite and love of flashy clothes."
+    },
+    {
+      "name": "Maxime Rougon",
+      "aliases": [
+        "Maxime"
+      ],
+      "description": "Son of Aristide and Angèle, sent to college by his grandmother Félicité."
+    },
+    {
+      "name": "Marthe Rougon",
+      "aliases": [
+        "Marthe"
+      ],
+      "description": "Daughter of Pierre and Félicité, married and living in Marseille."
+    },
+    {
+      "name": "Sidonie Rougon",
+      "aliases": [
+        "Sidonie"
+      ],
+      "description": "Daughter of Pierre and Félicité, married and living in Paris."
+    },
+    {
+      "name": "Commandant Sicardot",
+      "aliases": [
+        "le commandant Sicardot"
+      ],
+      "description": "Father of Angèle, a retired captain who provided a small dowry for his daughter."
+    },
+    {
+      "name": "Puech",
+      "aliases": [
+        "le vieux Puech"
+      ],
+      "description": "Father of Félicité, a merchant whose business struggles lead to the marriage of his daughter to Pierre Rougon."
+    }
+  ],
+  "3": [
+    {
+      "name": "Félicité Rougon",
+      "aliases": [
+        "Félicité",
+        "madame Rougon",
+        "la vieille femme",
+        "petite"
+      ],
+      "description": "Wife of Pierre Rougon, ambitious and cunning, she is deeply involved in the political intrigues of Plassans and seeks to secure her family's fortune."
+    },
+    {
+      "name": "Pierre Rougon",
+      "aliases": [
+        "Rougon",
+        "Pierre",
+        "le marchand d’huile",
+        "le père"
+      ],
+      "description": "Husband of Félicité, a former oil merchant, he is involved in the political machinations of Plassans, aiming to capitalize on the political upheaval for personal gain."
+    },
+    {
+      "name": "Eugène Rougon",
+      "aliases": [
+        "Eugène"
+      ],
+      "description": "Son of Pierre and Félicité, he is involved in the Bonapartist movement and provides political guidance to his family from Paris."
+    },
+    {
+      "name": "Aristide Rougon",
+      "aliases": [
+        "Aristide"
+      ],
+      "description": "Son of Pierre and Félicité, a journalist with shifting political allegiances, he is initially a republican but is opportunistic and seeks to align with the winning side."
+    },
+    {
+      "name": "Pascal Rougon",
+      "aliases": [
+        "Pascal"
+      ],
+      "description": "Son of Pierre and Félicité, a doctor uninterested in politics, he is more focused on his medical practice and scientific interests."
+    },
+    {
+      "name": "M. de Carnavant",
+      "aliases": [
+        "le marquis de Carnavant",
+        "le marquis"
+      ],
+      "description": "An elderly nobleman with ties to the Rougon family, he is involved in the political intrigues of Plassans and supports the legitimist cause."
+    },
+    {
+      "name": "M. Isidore Granoux",
+      "aliases": [
+        "Granoux"
+      ],
+      "description": "A retired almond merchant and member of the municipal council, he is a conservative and a regular at the Rougon's political gatherings."
+    },
+    {
+      "name": "M. Roudier",
+      "aliases": [
+        "Roudier"
+      ],
+      "description": "A wealthy retired bonnetier and Orléanist, he is influential in Plassans and a key figure in the conservative circle around the Rougons."
+    },
+    {
+      "name": "Commandant Sicardot",
+      "aliases": [
+        "le commandant",
+        "Sicardot"
+      ],
+      "description": "A retired military officer and father-in-law of Aristide, he is a staunch Bonapartist and supports the Rougons' political ambitions."
+    },
+    {
+      "name": "Vuillet",
+      "aliases": [
+        "le sieur Vuillet"
+      ],
+      "description": "A bookseller and publisher of the Gazette de Plassans, he is a conservative and supports the clergy's interests in the political landscape of Plassans."
+    },
+    {
+      "name": "M. Garçonnet",
+      "aliases": [
+        "le maire",
+        "M. le maire"
+      ],
+      "description": "The mayor of Plassans, a legitimist who is cautious about the political changes and maintains order in the town."
+    },
+    {
+      "name": "M. Peirotte",
+      "aliases": [
+        "Peirotte"
+      ],
+      "description": "The current receveur particulier (tax collector) of Plassans, whose position Pierre Rougon aspires to take over."
+    },
+    {
+      "name": "Angèle",
+      "aliases": [
+        "Angèle"
+      ],
+      "description": "Wife of Aristide Rougon, she assists him in his journalistic endeavors and is involved in his political maneuverings."
+    }
+  ],
+  "4": [
+    {
+      "name": "Antoine Macquart",
+      "aliases": [
+        "Macquart",
+        "Antoine"
+      ],
+      "description": "A lazy and envious man, brother of Pierre Rougon, who returns to Plassans after Napoleon's fall. He is embittered by his brother's success and becomes a fervent republican, hoping to take revenge on the Rougons."
+    },
+    {
+      "name": "Pierre Rougon",
+      "aliases": [
+        "Rougon",
+        "Pierre",
+        "le marchand d’huile"
+      ],
+      "description": "Antoine's brother, who has taken control of their mother's fortune. He is a conservative and is hiding during the republican uprising."
+    },
+    {
+      "name": "Adélaïde Fouque",
+      "aliases": [
+        "Adélaïde",
+        "tante Dide"
+      ],
+      "description": "Mother of Pierre and Antoine, living in isolation. She is detached from the world and has a mysterious past involving a braconnier named Macquart."
+    },
+    {
+      "name": "Félicité Rougon",
+      "aliases": [
+        "Félicité"
+      ],
+      "description": "Pierre Rougon's wife, who is concerned about the family's reputation and the scandal caused by Antoine."
+    },
+    {
+      "name": "Silvère Mouret",
+      "aliases": [
+        "Silvère"
+      ],
+      "description": "A young, idealistic republican and grandson of Adélaïde. He is involved in the uprising and is deeply influenced by his uncle Antoine's rhetoric."
+    },
+    {
+      "name": "Miette",
+      "aliases": [],
+      "description": "A young girl who carries the red flag during the republican uprising. She is in a relationship with Silvère."
+    },
+    {
+      "name": "Jean Macquart",
+      "aliases": [
+        "Jean"
+      ],
+      "description": "Son of Antoine Macquart, a hardworking young man who eventually leaves his father due to his laziness and exploitation."
+    },
+    {
+      "name": "Gervaise Macquart",
+      "aliases": [
+        "Gervaise"
+      ],
+      "description": "Daughter of Antoine Macquart, who is physically weak and eventually leaves with her partner Lantier."
+    },
+    {
+      "name": "Joséphine Gavaudan",
+      "aliases": [
+        "Fine"
+      ],
+      "description": "Antoine Macquart's wife, a hardworking woman who supports the family until her death."
+    },
+    {
+      "name": "Mouret",
+      "aliases": [],
+      "description": "Silvère's father, who committed suicide after the death of his wife Ursule."
+    },
+    {
+      "name": "Ursule Mouret",
+      "aliases": [
+        "Ursule"
+      ],
+      "description": "Silvère's mother, who died of a slow illness, leaving her children orphaned."
+    },
+    {
+      "name": "François Mouret",
+      "aliases": [
+        "François"
+      ],
+      "description": "Silvère's older brother, a diligent and sober young man who works for his uncle Pierre Rougon."
+    },
+    {
+      "name": "Marthe Rougon",
+      "aliases": [
+        "Marthe"
+      ],
+      "description": "Pierre Rougon's daughter, who marries François Mouret."
+    },
+    {
+      "name": "Pascal Rougon",
+      "aliases": [
+        "Pascal"
+      ],
+      "description": "Pierre Rougon's son, a doctor who helps the Macquart family during Antoine's illness."
+    },
+    {
+      "name": "Aristide Rougon",
+      "aliases": [
+        "Aristide"
+      ],
+      "description": "Pierre Rougon's son, a journalist with republican sympathies, but who keeps his distance from Antoine."
+    },
+    {
+      "name": "Eugène Rougon",
+      "aliases": [
+        "Eugène"
+      ],
+      "description": "Pierre Rougon's son, rumored to have a good position in Paris, but suspected by Antoine of being a police informant."
+    },
+    {
+      "name": "Maxime Rougon",
+      "aliases": [
+        "Maxime"
+      ],
+      "description": "Aristide's son, a young boy who is disrespectful towards Antoine."
+    },
+    {
+      "name": "Justin Rébufat",
+      "aliases": [
+        "Justin"
+      ],
+      "description": "Miette's cousin, who harbors a deep hatred for her and insults her publicly."
+    },
+    {
+      "name": "M. Garçonnet",
+      "aliases": [
+        "le maire"
+      ],
+      "description": "The mayor of Plassans, who tries to negotiate with the insurgents during their occupation of the town."
+    },
+    {
+      "name": "Commandant Sicardot",
+      "aliases": [
+        "Sicardot"
+      ],
+      "description": "A military officer who wants to fight the insurgents but is overruled by the mayor."
+    },
+    {
+      "name": "Cassoute",
+      "aliases": [],
+      "description": "A terrassier who follows Antoine Macquart's orders during the uprising."
+    },
+    {
+      "name": "Rengade",
+      "aliases": [],
+      "description": "A gendarme who is injured by Silvère during the uprising."
+    }
+  ],
+  "5": [
+    {
+      "name": "Miette",
+      "aliases": [
+        "Marie",
+        "la Chantegreil",
+        "la grande fille rouge"
+      ],
+      "description": "A young girl, deeply in love with Silvère, who joins the insurrection and carries the red flag. She is strong-willed and determined, but ultimately meets a tragic end."
+    },
+    {
+      "name": "Silvère Mouret",
+      "aliases": [
+        "Silvère"
+      ],
+      "description": "A passionate young man and fervent republican, deeply in love with Miette. He is caught up in the insurrection and is devastated by Miette's death."
+    },
+    {
+      "name": "Tante Dide",
+      "aliases": [
+        "tante Dide"
+      ],
+      "description": "Silvère's grandmother, who has a troubled past and experiences nervous crises. She is protective of Silvère and wary of the past repeating itself."
+    },
+    {
+      "name": "Justin",
+      "aliases": [
+        "le cousin",
+        "le garçon"
+      ],
+      "description": "Miette's cousin, who torments her and is suspicious of her happiness."
+    },
+    {
+      "name": "Rébufat",
+      "aliases": [
+        "le père Rébufat",
+        "l'oncle"
+      ],
+      "description": "Miette's uncle, who treats her harshly and exploits her labor."
+    },
+    {
+      "name": "Eulalie Chantegreil",
+      "aliases": [
+        "la tante Eulalie"
+      ],
+      "description": "Miette's aunt, who was protective of her before her death."
+    },
+    {
+      "name": "Chantegreil",
+      "aliases": [
+        "le père de Miette"
+      ],
+      "description": "Miette's father, a poacher sent to the penal colony for killing a gendarme."
+    },
+    {
+      "name": "Pascal Rougon",
+      "aliases": [
+        "le docteur Pascal",
+        "Pascal"
+      ],
+      "description": "Silvère's cousin, a doctor who follows the insurrection out of curiosity and scientific interest."
+    },
+    {
+      "name": "Rengade",
+      "aliases": [
+        "le gendarme"
+      ],
+      "description": "A gendarme injured by Silvère during the insurrection, who haunts Silvère's thoughts."
+    },
+    {
+      "name": "Sicardot",
+      "aliases": [
+        "le commandant Sicardot"
+      ],
+      "description": "A military commander held prisoner by the insurgents, who is frustrated by the situation."
+    },
+    {
+      "name": "Garçonnet",
+      "aliases": [
+        "M. Garçonnet",
+        "monsieur le maire"
+      ],
+      "description": "The mayor of Orchères, held prisoner by the insurgents."
+    },
+    {
+      "name": "Peirotte",
+      "aliases": [
+        "M. Peirotte",
+        "le receveur particulier"
+      ],
+      "description": "A government official held prisoner by the insurgents, who is killed during the battle."
+    },
+    {
+      "name": "Masson",
+      "aliases": [
+        "le colonel Masson"
+      ],
+      "description": "A military officer leading the troops against the insurgents."
+    },
+    {
+      "name": "Blériot",
+      "aliases": [
+        "M. de Blériot",
+        "le préfet du département"
+      ],
+      "description": "The prefect of the department, accompanying the military forces against the insurgents."
+    }
+  ],
+  "6": [
+    {
+      "name": "Pierre Rougon",
+      "aliases": [
+        "Rougon",
+        "Pierre"
+      ],
+      "description": "Ambitious and cunning head of the Rougon family, involved in political machinations to secure power in Plassans."
+    },
+    {
+      "name": "Félicité Rougon",
+      "aliases": [
+        "Félicité",
+        "la vieille",
+        "ma bonne"
+      ],
+      "description": "Pierre Rougon's astute and manipulative wife, who plays a crucial role in orchestrating their political strategies."
+    },
+    {
+      "name": "Antoine Macquart",
+      "aliases": [
+        "Macquart",
+        "Antoine"
+      ],
+      "description": "Pierre Rougon's half-brother, a schemer with a grudge against the Rougons, involved in republican activities."
+    },
+    {
+      "name": "Granoux",
+      "aliases": [
+        "M. Isidore",
+        "Monsieur Isidore"
+      ],
+      "description": "A timid and naive member of the municipal council, loyal to Rougon and known for his comical attempt to sound the tocsin with a hammer."
+    },
+    {
+      "name": "Roudier",
+      "aliases": [
+        "le commandant Roudier"
+      ],
+      "description": "A former bonnetier and commander of the National Guard in Plassans, supportive of Rougon's cause."
+    },
+    {
+      "name": "Aristide Rougon",
+      "aliases": [
+        "Aristide"
+      ],
+      "description": "Pierre and Félicité's son, initially hesitant but ultimately aligns with his parents' political ambitions."
+    },
+    {
+      "name": "Eugène Rougon",
+      "aliases": [
+        "Eugène"
+      ],
+      "description": "Pierre and Félicité's son, who provides crucial political information from Paris, influencing his parents' actions."
+    },
+    {
+      "name": "Vuillet",
+      "aliases": [
+        "le libraire",
+        "Vuillet"
+      ],
+      "description": "A cunning and opportunistic bookseller who manipulates information for personal gain."
+    },
+    {
+      "name": "M. de Blériot",
+      "aliases": [
+        "le préfet",
+        "M. de Blériot"
+      ],
+      "description": "The prefect of the department, who arrives with the military to restore order in Plassans."
+    },
+    {
+      "name": "Colonel Masson",
+      "aliases": [
+        "le colonel Masson"
+      ],
+      "description": "A military officer who arrives with the prefect to secure Plassans."
+    },
+    {
+      "name": "M. Garçonnet",
+      "aliases": [
+        "le maire",
+        "M. Garçonnet"
+      ],
+      "description": "The mayor of Plassans, whose office becomes a focal point during the political turmoil."
+    },
+    {
+      "name": "Tante Dide",
+      "aliases": [
+        "la vieille",
+        "tante Dide"
+      ],
+      "description": "The mother of Antoine Macquart, who remains detached from the political events."
+    },
+    {
+      "name": "Silvère Mouret",
+      "aliases": [
+        "Silvère"
+      ],
+      "description": "A young republican insurgent related to the Rougons, involved in the uprising."
+    },
+    {
+      "name": "Miette",
+      "aliases": [
+        "la grande fille rouge"
+      ],
+      "description": "Silvère's companion, known for her distinctive red attire during the insurrection."
+    },
+    {
+      "name": "M. de Carnavant",
+      "aliases": [
+        "le marquis de Carnavant",
+        "le marquis"
+      ],
+      "description": "An aristocrat with ties to the Rougons, observing the political events with interest."
+    }
+  ],
+  "7": [
+    {
+      "name": "Pierre Rougon",
+      "aliases": [
+        "Rougon",
+        "Pierre"
+      ],
+      "description": "Ambitious head of the Rougon family, eagerly awaiting rewards for his political loyalty."
+    },
+    {
+      "name": "Félicité Rougon",
+      "aliases": [
+        "Félicité"
+      ],
+      "description": "Pierre Rougon's wife, deeply invested in her family's social ascent."
+    },
+    {
+      "name": "Eugène Rougon",
+      "aliases": [
+        "Eugène"
+      ],
+      "description": "Pierre and Félicité's son, involved in political machinations in Paris."
+    },
+    {
+      "name": "Aristide Rougon",
+      "aliases": [
+        "Aristide"
+      ],
+      "description": "Pierre and Félicité's son, opportunistic and eager to advance his career in Paris."
+    },
+    {
+      "name": "Pascal Rougon",
+      "aliases": [
+        "Pascal",
+        "le médecin"
+      ],
+      "description": "Pierre and Félicité's son, a doctor concerned with the well-being of his family."
+    },
+    {
+      "name": "Silvère Mouret",
+      "aliases": [
+        "Silvère"
+      ],
+      "description": "Young republican insurgent, deeply in love with Miette, ultimately executed."
+    },
+    {
+      "name": "Antoine Macquart",
+      "aliases": [
+        "Macquart",
+        "Antoine"
+      ],
+      "description": "Pierre Rougon's brother, a discontented and scheming character."
+    },
+    {
+      "name": "Tante Dide",
+      "aliases": [
+        "Dide"
+      ],
+      "description": "Mother of Pierre Rougon and Antoine Macquart, suffers from a mental breakdown."
+    },
+    {
+      "name": "Miette Chantegreil",
+      "aliases": [
+        "Miette"
+      ],
+      "description": "Silvère's beloved, who has died, leaving him in despair."
+    },
+    {
+      "name": "M. Garçonnet",
+      "aliases": [
+        "Garçonnet"
+      ],
+      "description": "The mayor of Plassans, hosting a dinner for the prefect and the colonel."
+    },
+    {
+      "name": "Sicardot",
+      "aliases": [
+        "Sicardot"
+      ],
+      "description": "A character who is envious of Pierre Rougon's new decoration."
+    },
+    {
+      "name": "Granoux",
+      "aliases": [
+        "Granoux"
+      ],
+      "description": "A member of the bourgeoisie, part of the Rougon's social circle."
+    },
+    {
+      "name": "Roudier",
+      "aliases": [
+        "Roudier"
+      ],
+      "description": "A wealthy bourgeois, part of the Rougon's social circle."
+    },
+    {
+      "name": "Vuillet",
+      "aliases": [
+        "Vuillet"
+      ],
+      "description": "A bookseller, part of the Rougon's social circle."
+    },
+    {
+      "name": "M. Peirotte",
+      "aliases": [
+        "Peirotte"
+      ],
+      "description": "The deceased former tax collector, whose position Pierre Rougon hopes to obtain."
+    },
+    {
+      "name": "Rengade",
+      "aliases": [
+        "le gendarme",
+        "le borgne"
+      ],
+      "description": "A gendarme seeking revenge on Silvère for blinding him."
+    },
+    {
+      "name": "Mourgue",
+      "aliases": [
+        "Mourgue"
+      ],
+      "description": "A peasant from Poujols, executed alongside Silvère."
+    },
+    {
+      "name": "Justin",
+      "aliases": [
+        "Justin"
+      ],
+      "description": "A young boy who takes pleasure in witnessing Silvère's execution."
+    },
+    {
+      "name": "M. de Blériot",
+      "aliases": [
+        "M. de Blériot"
+      ],
+      "description": "A character whom Pierre Rougon plans to visit for assistance."
+    },
+    {
+      "name": "M. de Carnavant",
+      "aliases": [
+        "le marquis"
+      ],
+      "description": "A noble who declines the Rougon's dinner invitation, preferring to distance himself."
+    }
+  ]
+}
