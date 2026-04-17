@@ -1,9 +1,5 @@
-"""Build a NetworkX graph from canonical characters and relationships.
+"""Step 6 — Build a NetworkX graph from characters and relationships."""
 
-Creates a DiGraph with character attributes on nodes and relationship
-attributes on edges. Supports placeholder nodes for uncertain characters
-and graph forking for ambiguous relationships.
-"""
 
 import argparse
 import copy
@@ -17,36 +13,31 @@ def build_graph(characters: list[dict], relationships: list[dict]) -> nx.DiGraph
     """Build a directed graph from characters and relationships."""
     G = nx.DiGraph()
 
-    # Add nodes
     for char in characters:
         G.add_node(
             char["canonical_name"],
             aliases=", ".join(char.get("aliases", [])),
             description=char.get("description", ""),
-            family_branch=char.get("family_branch", "other"),
+            group=char.get("group", char.get("family_branch", "other")),
             chapters=", ".join(char.get("chapters", [])),
             uncertain=False,
         )
 
-    # Add edges
     for rel in relationships:
         src = rel["source"]
         tgt = rel["target"]
 
-        # Create placeholder nodes for characters not in the canonical list
         for node in (src, tgt):
             if node not in G:
                 G.add_node(
                     node,
                     aliases="",
                     description="Unknown character",
-                    family_branch="other",
+                    group="other",
                     chapters="",
                     uncertain=True,
                 )
 
-        # For undirected relationships, add edges in both directions
-        # but mark them as undirected via attribute
         G.add_edge(
             src,
             tgt,
@@ -57,7 +48,6 @@ def build_graph(characters: list[dict], relationships: list[dict]) -> nx.DiGraph
             passages="; ".join(rel.get("passages", [])),
         )
 
-        # Add reverse edge for undirected relationships
         if not rel.get("directed", False):
             G.add_edge(
                 tgt,
@@ -75,18 +65,9 @@ def build_graph(characters: list[dict], relationships: list[dict]) -> nx.DiGraph
 def fork_graph(
     G: nx.DiGraph, edge_key: tuple[str, str], alternatives: list[dict]
 ) -> list[nx.DiGraph]:
-    """Fork a graph into variants for an ambiguous relationship.
+    """Fork a graph for an ambiguous relationship.
 
-    Parameters
-    ----------
-    G : the base graph
-    edge_key : (source, target) of the ambiguous edge to replace
-    alternatives : list of dicts with keys matching edge attributes,
-                   each representing one possible interpretation
-    Returns
-    -------
-    List of graph copies, one per alternative.
-    """
+    Returns one copy per alternative interpretation."""
     variants = []
     src, tgt = edge_key
     for alt in alternatives:
@@ -127,7 +108,6 @@ def main(
     if uncertain:
         print(f"Uncertain/placeholder nodes: {uncertain}")
 
-    # Print low-confidence edges
     low_conf = [(u, v, d) for u, v, d in G.edges(data=True) if d.get("confidence", 1) < 0.7]
     if low_conf:
         print(f"Low-confidence edges ({len(low_conf)}):")

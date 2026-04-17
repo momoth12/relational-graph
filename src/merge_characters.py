@@ -1,9 +1,5 @@
-"""Merge and deduplicate extracted characters into canonical character sheets.
+"""Step 3 — Merge per-chapter characters into a canonical deduplicated list."""
 
-Takes per-chapter raw character data and produces a unified list of characters
-with canonical names, merged aliases, and chapter presence tracking.
-Uses GPT-4o to resolve ambiguous name matches.
-"""
 
 import argparse
 import json
@@ -15,43 +11,47 @@ from openai import OpenAI
 
 load_dotenv()
 
-MERGE_PROMPT = """You are a literary analyst. You have a list of character mentions extracted
-from different chapters of Émile Zola's "La Fortune des Rougon".
+MERGE_PROMPT_TEMPLATE = """You are a literary analyst. You have a list of character mentions extracted
+from different chapters of "{title}" by {author}.
 
 Your task is to deduplicate these characters and produce a canonical list.
 
 Rules:
 1. Each real character should appear EXACTLY ONCE with their most complete canonical name
-   (e.g., "Pierre Rougon", not just "Pierre" or "Rougon")
 2. Merge all aliases: different names/references for the same person go into "aliases"
 3. Merge descriptions from all chapters into one coherent description
 4. Track which chapters each character appears in ("chapters" field)
-5. Characters referred to only by role/title (e.g., "le commandant") should keep that as
-   canonical name UNLESS you can identify them as a named character
-6. Use your knowledge of the novel to resolve ambiguities (e.g., "le docteur" = "Pascal Rougon")
-7. "family_branch" should be one of: "Rougon", "Macquart", "Mouret", "other"
+5. Characters referred to only by role/title should keep that as canonical name
+   UNLESS you can identify them as a named character
+6. Use your knowledge of the novel to resolve ambiguities
+7. "group" should be one of: {groups}
 
 Input format: a dict mapping chapter keys to arrays of character objects.
 
 You MUST return a JSON object with a single key "characters" containing an array of canonical character objects.
 
 Example:
-{"characters": [
-  {
-    "canonical_name": "Pierre Rougon",
-    "aliases": ["Rougon", "Pierre", "le père Rougon", "M. Rougon"],
+{{"characters": [
+  {{
+    "canonical_name": "Jean Dupont",
+    "aliases": ["Dupont", "Jean", "M. Dupont"],
     "description": "...",
-    "family_branch": "Rougon",
-    "chapters": ["preface", "1", "3", "5"]
-  }
-]}
+    "group": "...",
+    "chapters": ["1", "3", "5"]
+  }}
+]}}
 
-IMPORTANT: Each entry MUST have "canonical_name" (string), "aliases" (list of strings), "description" (string), "family_branch" (string), "chapters" (list of strings). No markdown fences, no explanation.
+IMPORTANT: Each entry MUST have "canonical_name" (string), "aliases" (list of strings), "description" (string), "group" (string), "chapters" (list of strings). No markdown fences, no explanation.
 """
 
 
+def _load_book_config(path: str) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
 def merge_characters(
-    client: OpenAI, raw_characters: dict, cache_dir: Path
+    client: OpenAI, raw_characters: dict, cache_dir: Path,
+    system_prompt: str = "",
 ) -> list[dict]:
     """Merge raw per-chapter characters into canonical list via LLM."""
     cache_file = cache_dir / "merged_characters.json"
@@ -63,7 +63,7 @@ def merge_characters(
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": MERGE_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": json.dumps(raw_characters, ensure_ascii=False)},
         ],
         temperature=0.1,
@@ -73,7 +73,6 @@ def merge_characters(
     raw = response.choices[0].message.content.strip()
     parsed = json.loads(raw)
 
-    # Extract the characters list from the response object
     if isinstance(parsed, dict):
         parsed = parsed.get("characters", [])
         if not isinstance(parsed, list):
@@ -81,19 +80,21 @@ def merge_characters(
     if not isinstance(parsed, list):
         raise ValueError(f"Unexpected LLM response format: {raw[:200]}")
 
-    # Validate structure and deduplicate by canonical_name
     seen: dict[str, dict] = {}
     for char in parsed:
         if "canonical_name" not in char:
             raise ValueError(f"Missing canonical_name in character: {char}")
         char.setdefault("aliases", [])
         char.setdefault("description", "")
-        char.setdefault("family_branch", "other")
+        char.setdefault("group", "other")
         char.setdefault("chapters", [])
+        if "family_branch" in char and "group" not in char:
+            char["group"] = char.pop("family_branch")
+        elif "family_branch" in char:
+            char.pop("family_branch")
 
         name = char["canonical_name"]
         if name in seen:
-            # Merge duplicate into existing entry
             existing = seen[name]
             existing["aliases"] = list(set(existing["aliases"] + char["aliases"]))
             existing["chapters"] = list(set(existing["chapters"] + char["chapters"]))
@@ -108,11 +109,17 @@ def merge_characters(
     return parsed
 
 
-def main(input_path: str, output_path: str, cache_dir: str = "data/cache") -> list[dict]:
+def main(input_path: str, output_path: str, cache_dir: str = "data/cache",
+         book_config_path: str = "book_config.json") -> list[dict]:
     raw_characters = json.loads(Path(input_path).read_text(encoding="utf-8"))
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    book_config = _load_book_config(book_config_path)
+    groups = ', '.join(f'"{g}"' for g in book_config.get("groups", [])) + ', "other"'
+    system_prompt = MERGE_PROMPT_TEMPLATE.format(
+        title=book_config["title"], author=book_config["author"], groups=groups
+    )
 
-    characters = merge_characters(client, raw_characters, Path(cache_dir))
+    characters = merge_characters(client, raw_characters, Path(cache_dir), system_prompt)
 
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -123,7 +130,7 @@ def main(input_path: str, output_path: str, cache_dir: str = "data/cache") -> li
         aliases_str = ", ".join(c["aliases"][:3])
         if len(c["aliases"]) > 3:
             aliases_str += "..."
-        print(f"  {c['canonical_name']} [{c['family_branch']}] (aliases: {aliases_str})")
+        print(f"  {c['canonical_name']} [{c.get('group', 'other')}] (aliases: {aliases_str})")
 
     return characters
 
@@ -133,5 +140,6 @@ if __name__ == "__main__":
     parser.add_argument("--input", default="data/raw_characters.json", help="Raw characters JSON")
     parser.add_argument("--output", default="data/characters.json", help="Output canonical JSON")
     parser.add_argument("--cache-dir", default="data/cache", help="Cache directory")
+    parser.add_argument("--book-config", default="book_config.json", help="Book configuration JSON")
     args = parser.parse_args()
-    main(args.input, args.output, args.cache_dir)
+    main(args.input, args.output, args.cache_dir, args.book_config)

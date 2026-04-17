@@ -1,10 +1,5 @@
-"""Extract text passages that describe relationships between characters.
+"""Step 4 — Extract relationship-revealing passages from each chapter."""
 
-Sends each chapter + canonical character list to GPT-4o and asks it to
-identify and extract only the passages where a relationship is being
-described, implied, or revealed. This provides focused input for the
-relationship extraction step.
-"""
 
 import argparse
 import json
@@ -17,16 +12,16 @@ from tqdm import tqdm
 
 load_dotenv()
 
-SYSTEM_PROMPT = """You are a literary analyst specializing in 19th-century French literature.
-You will receive a chapter from Émile Zola's "La Fortune des Rougon" along with a list of
+SYSTEM_PROMPT_TEMPLATE = """You are a literary analyst.
+You will receive a chapter from "{title}" by {author} along with a list of
 canonical character names.
 
 Your task is to extract ONLY the passages from the text where a relationship between
 two or more characters is being described, implied, or revealed.
 
 A "relationship passage" includes:
-- Family ties being stated ("son fils Pierre", "sa mère Adélaïde")
-- Romantic or marital bonds ("sa femme Félicité", "Silvère aimait Miette")
+- Family ties being stated (e.g., "his son", "her mother")
+- Romantic or marital bonds (e.g., "his wife", "they were lovers")
 - Political alliances or oppositions
 - Friendships, enmities, professional ties
 - Any interaction that reveals the nature of a bond between characters
@@ -40,10 +35,10 @@ For each passage, provide:
 You MUST return a JSON object with a single key "passages" containing an array of passage objects.
 
 Example:
-{"passages": [
-  {"text": "Pierre, le fils légitime d'Adélaïde, grandit dans la haine", "characters": ["Adélaïde Fouque", "Pierre Rougon"], "relationship_hint": "parent-child"},
-  {"text": "Félicité, sa femme, une petite femme sèche", "characters": ["Pierre Rougon", "Félicité Rougon"], "relationship_hint": "spouses"}
-]}
+{{"passages": [
+  {{"text": "Jean, the legitimate son of Marie, grew up in resentment", "characters": ["Marie Dupont", "Jean Dupont"], "relationship_hint": "parent-child"}},
+  {{"text": "his wife, a small dry woman", "characters": ["Jean Dupont", "Anne Dupont"], "relationship_hint": "spouses"}}
+]}}
 
 Each entry MUST have "text" (string), "characters" (list of strings), and "relationship_hint" (string).
 
@@ -56,13 +51,18 @@ IMPORTANT:
 """
 
 
-def _call_llm(client: OpenAI, chapter_key: str, chapter_text: str, char_list_str: str, retries: int = 2) -> list[dict]:
-    """Single LLM call for passage extraction with retry. Returns validated list."""
+def _load_book_config(path: str) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def _call_llm(client: OpenAI, chapter_key: str, chapter_text: str, char_list_str: str,
+              system_prompt: str = "", retries: int = 2) -> list[dict]:
+    """LLM call with retry for passage extraction."""
     for attempt in range(retries + 1):
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {
                     "role": "user",
                     "content": (
@@ -116,6 +116,7 @@ def extract_passages_from_chapter(
     chapter_text: str,
     characters: list[dict],
     cache_dir: Path,
+    system_prompt: str = "",
 ) -> list[dict]:
     """Extract relationship passages from a single chapter, with caching."""
     cache_file = cache_dir / f"passages_{chapter_key}.json"
@@ -126,12 +127,10 @@ def extract_passages_from_chapter(
     char_names = [c["canonical_name"] for c in characters]
     char_list_str = "\n".join(f"- {name}" for name in char_names)
 
-    # Split long chapters into chunks of ~30k chars to avoid output token truncation
+    # Split long chapters to avoid output truncation
     CHUNK_SIZE = 30000
     if len(chapter_text) > CHUNK_SIZE:
-        # Determine number of parts needed
         num_parts = (len(chapter_text) // CHUNK_SIZE) + 1
-        # Split at paragraph breaks
         chunks = []
         remaining = chapter_text
         for i in range(num_parts - 1):
@@ -149,10 +148,10 @@ def extract_passages_from_chapter(
         parsed = []
         for i, chunk in enumerate(chunks):
             print(f"  [{chapter_key}] Calling GPT-4o (part {i+1}/{len(chunks)})...")
-            parsed.extend(_call_llm(client, f"{chapter_key} (part {i+1})", chunk, char_list_str))
+            parsed.extend(_call_llm(client, f"{chapter_key} (part {i+1})", chunk, char_list_str, system_prompt))
     else:
         print(f"  [{chapter_key}] Calling GPT-4o...")
-        parsed = _call_llm(client, chapter_key, chapter_text, char_list_str)
+        parsed = _call_llm(client, chapter_key, chapter_text, char_list_str, system_prompt)
 
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(parsed, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -164,16 +163,21 @@ def main(
     characters_path: str,
     output_path: str,
     cache_dir: str = "data/cache",
+    book_config_path: str = "book_config.json",
 ) -> dict[str, list[dict]]:
     chapters = json.loads(Path(chapters_path).read_text(encoding="utf-8"))
     characters = json.loads(Path(characters_path).read_text(encoding="utf-8"))
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     cache = Path(cache_dir)
+    book_config = _load_book_config(book_config_path)
+    system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
+        title=book_config["title"], author=book_config["author"]
+    )
 
     all_passages: dict[str, list[dict]] = {}
     total = 0
     for key, text in tqdm(chapters.items(), desc="Extracting passages", unit="ch"):
-        passages = extract_passages_from_chapter(client, key, text, characters, cache)
+        passages = extract_passages_from_chapter(client, key, text, characters, cache, system_prompt)
         all_passages[key] = passages
         total += len(passages)
         tqdm.write(f"  [{key}] Found {len(passages)} passages")
@@ -192,5 +196,6 @@ if __name__ == "__main__":
     parser.add_argument("--characters", default="data/characters.json", help="Canonical characters JSON")
     parser.add_argument("--output", default="data/passages.json", help="Output passages JSON")
     parser.add_argument("--cache-dir", default="data/cache", help="Cache directory")
+    parser.add_argument("--book-config", default="book_config.json", help="Book configuration JSON")
     args = parser.parse_args()
-    main(args.chapters, args.characters, args.output, args.cache_dir)
+    main(args.chapters, args.characters, args.output, args.cache_dir, args.book_config)

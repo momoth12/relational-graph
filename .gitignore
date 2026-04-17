@@ -3,7 +3,6 @@ __pycache__/
 *.pyc
 data/cache/
 relational_graph/
-output/*.png
 output/*.graphml
 .ipynb_checkpoints/
 La_Fortune_des_Rougon.txt

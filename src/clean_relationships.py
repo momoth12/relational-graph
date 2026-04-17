@@ -1,15 +1,5 @@
-"""Clean, normalize and enrich the extracted relationships.
+"""Step 5b — Clean, validate and enrich relationships using o3-mini."""
 
-Step 5b — runs between extract_relationships and build_graph.
-Uses GPT-4o to validate and correct relationships by cross-referencing
-with character descriptions from characters.json.
-
-Pipeline:
-1. Normalize non-canonical relationship types (deterministic)
-2. LLM validation: correct errors, fix directions, infer missing (GPT-4o)
-3. Normalize symmetric edge ordering (deterministic)
-4. Deduplicate (deterministic)
-"""
 
 import argparse
 import json
@@ -21,7 +11,6 @@ from openai import OpenAI
 
 load_dotenv()
 
-# ─── Type normalization map ───────────────────────────────────────────────────
 TYPE_MAP = {
     # Canonical types (pass through)
     "parent_child": "parent_child",
@@ -108,7 +97,7 @@ Use ONLY canonical names from the character list.
 
 
 def _make_key(src: str, tgt: str, rtype: str) -> tuple:
-    """Create a dedup key. Symmetric types use alphabetical order."""
+    """Dedup key; symmetric types use alphabetical order."""
     if rtype not in DIRECTED_TYPES:
         if src > tgt:
             src, tgt = tgt, src
@@ -116,7 +105,7 @@ def _make_key(src: str, tgt: str, rtype: str) -> tuple:
 
 
 def normalize_types(rels: list[dict]) -> list[dict]:
-    """Map all relationship types to canonical forms."""
+    """Map relationship types to canonical forms."""
     for r in rels:
         original = r["type"]
         r["type"] = TYPE_MAP.get(original, original)
@@ -124,8 +113,7 @@ def normalize_types(rels: list[dict]) -> list[dict]:
 
 
 def llm_validate(rels: list[dict], characters: list[dict]) -> list[dict]:
-    """Use GPT-4o to validate, correct and complete relationships."""
-    # Check cache first
+    """Validate and complete relationships via o3-mini."""
     if CACHE_PATH.exists():
         print("  Using cached LLM validation result")
         cached = json.loads(CACHE_PATH.read_text(encoding="utf-8"))
@@ -133,16 +121,15 @@ def llm_validate(rels: list[dict], characters: list[dict]) -> list[dict]:
 
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    # Build the user message
     char_section = "CANONICAL CHARACTERS:\n"
     for c in characters:
         aliases = ", ".join(c.get("aliases", []))
-        char_section += f"- {c['canonical_name']} (branch: {c.get('family_branch', 'other')}): {c.get('description', 'N/A')}"
+        char_section += f"- {c['canonical_name']} (group: {c.get('group', c.get('family_branch', 'other'))}): {c.get('description', 'N/A')}"
         if aliases:
             char_section += f" [aliases: {aliases}]"
         char_section += "\n"
 
-    # Strip passages from input to save tokens (o3-mini uses reasoning tokens)
+    # Compact input (strip passages to save tokens)
     rels_compact = []
     for r in rels:
         rels_compact.append({
@@ -173,13 +160,12 @@ def llm_validate(rels: list[dict], characters: list[dict]) -> list[dict]:
     data = json.loads(content)
     result = data.get("relationships", [])
 
-    # Re-attach original passages where possible
+    # Re-attach original passages
     orig_map = {}
     for r in rels:
         key = _make_key(r["source"], r["target"], r["type"])
         orig_map[key] = r
 
-    # Validate structure
     validated = []
     for r in result:
         if not isinstance(r, dict) or "source" not in r or "target" not in r:
@@ -208,7 +194,7 @@ def llm_validate(rels: list[dict], characters: list[dict]) -> list[dict]:
 
 
 def normalize_symmetric(rels: list[dict]) -> list[dict]:
-    """Ensure symmetric relations use alphabetical source < target."""
+    """Alphabetical source < target for symmetric types."""
     for r in rels:
         if r["type"] not in DIRECTED_TYPES:
             r["directed"] = False
@@ -218,7 +204,7 @@ def normalize_symmetric(rels: list[dict]) -> list[dict]:
 
 
 def dedup(rels: list[dict]) -> list[dict]:
-    """Merge duplicate edges, keeping the one with highest confidence and merging passages."""
+    """Merge duplicates, keeping highest confidence and merging passages."""
     merged: dict[tuple, dict] = {}
     for r in rels:
         key = _make_key(r["source"], r["target"], r["type"])
@@ -251,7 +237,6 @@ def clean(rels: list[dict], characters: list[dict]) -> list[dict]:
     rels = dedup(rels)
     print(f"  {before} → {len(rels)} edges")
 
-    # Sort for readability
     rels.sort(key=lambda r: (r["type"], r["source"], r["target"]))
 
     return rels
@@ -269,7 +254,6 @@ def main(
     rels = clean(rels, characters)
     print(f"Output: {len(rels)} relationships")
 
-    # Summary by type
     types: dict[str, int] = {}
     for r in rels:
         types[r["type"]] = types.get(r["type"], 0) + 1

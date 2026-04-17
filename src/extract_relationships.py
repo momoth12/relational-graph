@@ -1,9 +1,5 @@
-"""Extract structured relationships from pre-extracted passages using GPT-4o.
+"""Step 5 — Extract structured relationships from passages using GPT-4o."""
 
-Receives relationship passages (from extract_passages.py) + canonical character list.
-Normalizes edge direction (parent→child for asymmetric, alphabetical for symmetric).
-Deduplicates across chapters.
-"""
 
 import argparse
 import json
@@ -39,11 +35,11 @@ DIRECTED_TYPES = {
     "employer_employee",
 }
 
-SYSTEM_PROMPT = """You are a literary analyst specializing in 19th-century French literature.
-You will receive a chapter from Émile Zola's "La Fortune des Rougon" along with a list of
+SYSTEM_PROMPT_TEMPLATE = """You are a literary analyst.
+You will receive passages from "{title}" by {author} along with a list of
 canonical character names.
 
-Extract ALL relationships between characters that are mentioned or implied in this chapter.
+Extract ALL relationships between characters that are mentioned or implied in these passages.
 
 For each relationship, provide:
 - "source": canonical name of the first character (use EXACT names from the provided list)
@@ -66,8 +62,8 @@ You MUST return a JSON object with a single key "relationships" containing an ar
 
 Example:
 {{"relationships": [
-  {{"source": "Adélaïde Fouque", "target": "Pierre Rougon", "type": "parent_child", "directed": true, "passage": "Pierre, le fils légitime", "confidence": 1.0}},
-  {{"source": "Aristide Rougon", "target": "Eugène Rougon", "type": "sibling", "directed": false, "passage": "ses frères Eugène et Aristide", "confidence": 0.9}}
+  {{"source": "Marie Dupont", "target": "Jean Dupont", "type": "parent_child", "directed": true, "passage": "Jean, the legitimate son", "confidence": 1.0}},
+  {{"source": "Anne Martin", "target": "Paul Martin", "type": "sibling", "directed": false, "passage": "his siblings Anne and Paul", "confidence": 0.9}}
 ]}}
 Each entry MUST have "source" (string), "target" (string), "type" (string), "directed" (bool), "passage" (string), and "confidence" (float).
 
@@ -76,16 +72,21 @@ IMPORTANT:
 - If a character is referenced but not in the list, skip that relationship
 - Include relationships that are stated, implied, or can be inferred from context
 - Do NOT invent relationships not supported by the text
-""".format(types=", ".join(RELATIONSHIP_TYPES))
+"""
 
 
-def _call_llm(client: OpenAI, chapter_key: str, passages_str: str, char_list_str: str, retries: int = 2) -> list[dict]:
-    """Single LLM call for relationship extraction with retry."""
+def _load_book_config(path: str) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def _call_llm(client: OpenAI, chapter_key: str, passages_str: str, char_list_str: str,
+              system_prompt: str = "", retries: int = 2) -> list[dict]:
+    """LLM call with retry for relationship extraction."""
     for attempt in range(retries + 1):
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {
                     "role": "user",
                     "content": (
@@ -144,6 +145,7 @@ def extract_relationships_from_passages(
     passages: list[dict],
     characters: list[dict],
     cache_dir: Path,
+    system_prompt: str = "",
 ) -> list[dict]:
     """Extract structured relationships from passages of a single chapter, with caching."""
     cache_file = cache_dir / f"relationships_{chapter_key}.json"
@@ -158,7 +160,6 @@ def extract_relationships_from_passages(
     char_names = [c["canonical_name"] for c in characters]
     char_list_str = "\n".join(f"- {name}" for name in char_names)
 
-    # Split into chunks if too many passages
     if len(passages) > MAX_PASSAGES_PER_CHUNK:
         chunks = [passages[i:i + MAX_PASSAGES_PER_CHUNK]
                    for i in range(0, len(passages), MAX_PASSAGES_PER_CHUNK)]
@@ -170,14 +171,14 @@ def extract_relationships_from_passages(
                 for i, p in enumerate(chunk)
             )
             print(f"  [{chapter_key}] Calling GPT-4o (chunk {ci+1}/{len(chunks)}, {len(chunk)} passages)...")
-            parsed.extend(_call_llm(client, f"{chapter_key} (chunk {ci+1})", passages_str, char_list_str))
+            parsed.extend(_call_llm(client, f"{chapter_key} (chunk {ci+1})", passages_str, char_list_str, system_prompt))
     else:
         passages_str = "\n\n".join(
             f"Passage {i+1} (hint: {p.get('relationship_hint', 'unknown')}): \"{p['text']}\""
             for i, p in enumerate(passages)
         )
         print(f"  [{chapter_key}] Calling GPT-4o ({len(passages)} passages)...")
-        parsed = _call_llm(client, chapter_key, passages_str, char_list_str)
+        parsed = _call_llm(client, chapter_key, passages_str, char_list_str, system_prompt)
 
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(parsed, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -185,7 +186,7 @@ def extract_relationships_from_passages(
 
 
 def normalize_and_dedup(all_rels: list[dict], characters: list[dict]) -> list[dict]:
-    """Normalize edge direction and deduplicate relationships."""
+    """Normalize directions and deduplicate across chapters."""
     canonical_names = {c["canonical_name"] for c in characters}
 
     merged: dict[tuple, dict] = {}
@@ -194,28 +195,23 @@ def normalize_and_dedup(all_rels: list[dict], characters: list[dict]) -> list[di
         tgt = rel.get("target", "")
         rtype = rel.get("type", "unknown")
 
-        # Skip if characters not in canonical list
         if src not in canonical_names or tgt not in canonical_names:
             continue
         if src == tgt:
             continue
 
-        # Normalize direction
         directed = rtype in DIRECTED_TYPES
         if not directed:
-            # Symmetric: alphabetical order
             if src > tgt:
                 src, tgt = tgt, src
 
         key = (src, tgt, rtype)
         if key in merged:
             existing = merged[key]
-            # Accumulate passages
             passage = rel.get("passage", "")
             if passage and passage not in existing["passages"]:
                 existing["passages"].append(passage)
             existing["weight"] += 1
-            # Keep highest confidence
             existing["confidence"] = max(
                 existing["confidence"], rel.get("confidence", 0.5)
             )
@@ -238,15 +234,21 @@ def main(
     characters_path: str,
     output_path: str,
     cache_dir: str = "data/cache",
+    book_config_path: str = "book_config.json",
 ) -> list[dict]:
     all_passages = json.loads(Path(passages_path).read_text(encoding="utf-8"))
     characters = json.loads(Path(characters_path).read_text(encoding="utf-8"))
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     cache = Path(cache_dir)
+    book_config = _load_book_config(book_config_path)
+    system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
+        title=book_config["title"], author=book_config["author"],
+        types=", ".join(RELATIONSHIP_TYPES),
+    )
 
     all_rels = []
     for key, passages in tqdm(all_passages.items(), desc="Extracting relationships", unit="ch"):
-        rels = extract_relationships_from_passages(client, key, passages, characters, cache)
+        rels = extract_relationships_from_passages(client, key, passages, characters, cache, system_prompt)
         all_rels.extend(rels)
         tqdm.write(f"  [{key}] Found {len(rels)} relationships")
 
@@ -271,5 +273,6 @@ if __name__ == "__main__":
     parser.add_argument("--characters", default="data/characters.json", help="Canonical characters JSON")
     parser.add_argument("--output", default="data/relationships.json", help="Output relationships JSON")
     parser.add_argument("--cache-dir", default="data/cache", help="Cache directory")
+    parser.add_argument("--book-config", default="book_config.json", help="Book configuration JSON")
     args = parser.parse_args()
-    main(args.passages, args.characters, args.output, args.cache_dir)
+    main(args.passages, args.characters, args.output, args.cache_dir, args.book_config)

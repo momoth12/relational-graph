@@ -1,51 +1,37 @@
-"""Visualize family trees using pygraphviz AGraph with generation-based ranks.
+"""Visualize family trees as PNG images via pygraphviz / Graphviz."""
 
-Produces one tree per family branch (Rougon, Macquart, Mouret) + one combined,
-filtering to core genealogical relationships (parent_child, spouse, sibling).
-Uses Graphviz rank constraints to align generations horizontally.
-"""
 
 import argparse
+import json
 from collections import deque
 from pathlib import Path
 
 import networkx as nx
 import pygraphviz as pgv
 
-# ─── Configuration ────────────────────────────────────────────────────────────
-
-BRANCH_COLORS = {
-    "Rougon": "#4A90D9",
-    "Macquart": "#D94A4A",
-    "Mouret": "#4AD94A",
-    "other": "#C0C0C0",
-}
-BRANCH_FILLCOLORS = {
-    "Rougon": "#DAE8F8",
-    "Macquart": "#F8DADA",
-    "Mouret": "#DAF8DA",
-    "other": "#EEEEEE",
-}
+# (border, fill) color pairs assigned to groups in alphabetical order
+_GROUP_PALETTE = [
+    ("#2E6BA6", "#CADCEF"),
+    ("#B8433A", "#F2D1CE"),
+    ("#3A8C47", "#D0ECCE"),
+    ("#C78A2E", "#F5E4C8"),
+    ("#7B4FB0", "#E0D4F0"),
+]
+_DEFAULT_COLORS = ("#888888", "#F0F0F0")
 
 # Only these types appear in family tree views
 TREE_TYPES = {"parent_child", "spouse", "sibling"}
 
 # Edge visual properties per type
 EDGE_STYLES = {
-    "parent_child": dict(color="#333333", penwidth="2.5", style="solid", arrowhead="normal"),
-    "spouse":       dict(color="#D94A9A", penwidth="2.0", style="bold",  arrowhead="none", constraint="false"),
-    "sibling":      dict(color="#4A90D9", penwidth="1.5", style="dashed", arrowhead="none", constraint="false"),
+    "parent_child": {"color": "#333", "penwidth": "2.5", "style": "solid", "arrowhead": "normal"},
+    "spouse":       {"color": "#B8433A", "penwidth": "2", "style": "bold", "arrowhead": "none", "constraint": "false"},
+    "sibling":      {"color": "#2E6BA6", "penwidth": "1.5", "style": "dashed", "arrowhead": "none", "constraint": "false"},
 }
 
-# ─── Generation assignment ────────────────────────────────────────────────────
-
 def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
-    """BFS from roots using parent_child edges to assign generation numbers.
-    
-    Gen 0 = nodes with no incoming parent_child edges (roots like Adélaïde).
-    Only parent_child edges are traversed.
-    """
-    # Build a parent→child adjacency from the full graph
+    """BFS from roots (gen 0) along parent_child edges."""
+    # parent→child adjacency
     children_of: dict[str, list[str]] = {}
     parents_of: dict[str, list[str]] = {}
     for u, v, d in G.edges(data=True):
@@ -53,16 +39,13 @@ def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
             children_of.setdefault(u, []).append(v)
             parents_of.setdefault(v, []).append(u)
 
-    # Find roots: nodes that appear as parents but not as children in parent_child edges
     all_parents = set(children_of.keys())
     all_children = set(parents_of.keys())
     all_pc_nodes = all_parents | all_children
     roots = all_parents - all_children
     if not roots:
-        # Fallback: pick nodes with no parent_child predecessors
         roots = all_pc_nodes
 
-    # BFS to assign generations
     gen: dict[str, int] = {}
     queue = deque()
     for r in roots:
@@ -76,7 +59,7 @@ def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
                 gen[child] = gen[node] + 1
                 queue.append(child)
 
-    # Assign spouse same generation as their partner
+    # spouses share the same generation
     for u, v, d in G.edges(data=True):
         if d.get("relationship_type") == "spouse":
             if u in gen and v not in gen:
@@ -84,7 +67,6 @@ def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
             elif v in gen and u not in gen:
                 gen[u] = gen[v]
 
-    # Any remaining nodes in the graph that weren't reached: assign gen -1
     for n in G.nodes():
         if n not in gen:
             gen[n] = -1
@@ -92,10 +74,8 @@ def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
     return gen
 
 
-# ─── Graph filtering ─────────────────────────────────────────────────────────
-
 def _filter_tree_edges(G: nx.DiGraph) -> nx.DiGraph:
-    """Keep only TREE_TYPES edges, remove isolates."""
+    """Keep only family edges and drop isolates."""
     H = G.copy()
     to_remove = [(u, v) for u, v, d in H.edges(data=True)
                  if d.get("relationship_type", "") not in TREE_TYPES]
@@ -104,22 +84,36 @@ def _filter_tree_edges(G: nx.DiGraph) -> nx.DiGraph:
     return H
 
 
-def _get_family_subgraph(G: nx.DiGraph, branch: str) -> nx.DiGraph:
-    """Extract nodes of a branch + their direct family connections."""
-    branch_nodes = {n for n, d in G.nodes(data=True) if d.get("family_branch") == branch}
+def _get_group_subgraph(G: nx.DiGraph, group: str) -> nx.DiGraph:
+    """Subgraph of a group and its direct connections."""
+    group_nodes = {n for n, d in G.nodes(data=True) if d.get("group") == group}
     connected = set()
-    for n in branch_nodes:
+    for n in group_nodes:
         for _, v, _ in G.edges(n, data=True):
             connected.add(v)
         for u, _, _ in G.in_edges(n, data=True):
             connected.add(u)
-    return G.subgraph(branch_nodes | connected).copy()
+    return G.subgraph(group_nodes | connected).copy()
 
 
-# ─── AGraph rendering ────────────────────────────────────────────────────────
+def _build_group_colors(G: nx.DiGraph) -> tuple[dict, dict]:
+    """Map each group to a border/fill color pair."""
+    groups = sorted({d.get("group", "other") for _, d in G.nodes(data=True)} - {"other"})
+    border = {}
+    fill = {}
+    for i, g in enumerate(groups):
+        b, f = _GROUP_PALETTE[i % len(_GROUP_PALETTE)]
+        border[g] = b
+        fill[g] = f
+    border["other"] = _DEFAULT_COLORS[0]
+    fill["other"] = _DEFAULT_COLORS[1]
+    return border, fill
 
-def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str) -> pgv.AGraph:
-    """Build a pygraphviz AGraph with rank constraints from a NetworkX DiGraph."""
+
+def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str,
+                  border_colors: dict | None = None,
+                  fill_colors: dict | None = None) -> pgv.AGraph:
+    """Convert a NetworkX DiGraph into a pygraphviz AGraph with generation ranks."""
     A = pgv.AGraph(directed=True, strict=False)
     A.graph_attr.update(
         rankdir="TB",
@@ -142,15 +136,13 @@ def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str) -> pgv.AGraph:
     )
     A.edge_attr.update(fontname="Helvetica", fontsize="9")
 
-    # Add nodes
     for n in G.nodes():
         data = G.nodes[n]
-        branch = data.get("family_branch", "other")
-        fillcolor = BRANCH_FILLCOLORS.get(branch, BRANCH_FILLCOLORS["other"])
-        bordercolor = BRANCH_COLORS.get(branch, BRANCH_COLORS["other"])
+        group = data.get("group", "other")
+        fillcolor = (fill_colors or {}).get(group, _DEFAULT_COLORS[1])
+        bordercolor = (border_colors or {}).get(group, _DEFAULT_COLORS[0])
         A.add_node(n, fillcolor=fillcolor, color=bordercolor, penwidth="2.0")
 
-    # Add edges (deduplicate undirected)
     seen_undirected = set()
     for u, v, d in G.edges(data=True):
         rtype = d.get("relationship_type", "")
@@ -162,15 +154,13 @@ def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str) -> pgv.AGraph:
                 continue
             seen_undirected.add(key)
 
-        style_attrs = EDGE_STYLES.get(rtype, {})
-        edge_attrs = dict(style_attrs)  # copy
+        edge_attrs = dict(EDGE_STYLES.get(rtype, {}))
 
         if not is_directed:
             edge_attrs["dir"] = "none"
 
         A.add_edge(u, v, **edge_attrs)
 
-    # Create rank=same subgraphs for each generation
     gen_groups: dict[int, list[str]] = {}
     for n in G.nodes():
         g = gen.get(n, -1)
@@ -182,45 +172,89 @@ def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str) -> pgv.AGraph:
         subg = A.add_subgraph(nodes, name=f"gen_{g}")
         subg.graph_attr["rank"] = "same"
 
+    # Legend
+    legend_nodes = []
+    idx = 0
+
+    groups_present = sorted(
+        {G.nodes[n].get("group", "other") for n in G.nodes()}
+    )
+    for grp in groups_present:
+        nid = f"_legend_grp_{idx}"
+        fc = (fill_colors or {}).get(grp, _DEFAULT_COLORS[1])
+        bc = (border_colors or {}).get(grp, _DEFAULT_COLORS[0])
+        A.add_node(nid, label=grp, shape="box", style="filled,rounded",
+                   fillcolor=fc, color=bc, penwidth="2.0",
+                   fontname="Helvetica", fontsize="10", width="1.2", height="0.3")
+        legend_nodes.append(nid)
+        idx += 1
+
+    edge_labels = {
+        "parent_child": "Parent → Child",
+        "spouse": "Spouse",
+        "sibling": "Sibling",
+    }
+    for rtype, label in edge_labels.items():
+        src_id = f"_legend_esrc_{idx}"
+        tgt_id = f"_legend_etgt_{idx}"
+        A.add_node(src_id, label="", shape="point", width="0.01", height="0.01")
+        A.add_node(tgt_id, label=label, shape="plaintext",
+                   fontname="Helvetica", fontsize="10")
+        style_attrs = dict(EDGE_STYLES.get(rtype, {}))
+        if rtype in ("spouse", "sibling"):
+            style_attrs["dir"] = "none"
+        style_attrs["constraint"] = "false"
+        A.add_edge(src_id, tgt_id, **style_attrs)
+        legend_nodes.extend([src_id, tgt_id])
+        idx += 1
+
+    legend_sub = A.add_subgraph(legend_nodes, name="cluster_legend")
+    legend_sub.graph_attr.update(
+        label="Legend", fontname="Helvetica", fontsize="12",
+        style="rounded", color="#AAAAAA", bgcolor="#F9F9F9",
+        rank="sink",
+    )
+
     return A
 
 
 def _render(A: pgv.AGraph, output_path: str) -> None:
-    """Render AGraph to PNG."""
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     A.draw(str(out), prog="dot", format="png")
     print(f"  Saved: {output_path}")
 
 
-# ─── Main pipeline ───────────────────────────────────────────────────────────
-
-def visualize_family_trees(G: nx.DiGraph, output_dir: str) -> None:
-    """Generate one family tree per branch + combined."""
+def visualize_family_trees(G: nx.DiGraph, output_dir: str,
+                           book_title: str = "Novel") -> None:
+    """One tree per group + one combined."""
     H = _filter_tree_edges(G)
     print(f"Tree subgraph: {len(H.nodes())} nodes, {len(H.edges())} edges")
 
-    gen = _assign_generations(G)  # use full graph for generation assignment
+    gen = _assign_generations(G)
+    border_colors, fill_colors = _build_group_colors(G)
 
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
 
-    # Combined tree
-    A = _build_agraph(H, gen, "Arbre généalogique — La Fortune des Rougon")
+    A = _build_agraph(H, gen, f"Family tree \u2014 {book_title}", border_colors, fill_colors)
     _render(A, str(out / "family_tree_all.png"))
 
-    # Per-branch trees
-    branches = sorted({d.get("family_branch", "other") for _, d in H.nodes(data=True)} - {"other"})
-    for branch in branches:
-        sub = _get_family_subgraph(H, branch)
+    groups = sorted({d.get("group", "other") for _, d in H.nodes(data=True)} - {"other"})
+    for group in groups:
+        sub = _get_group_subgraph(H, group)
         if len(sub.nodes()) > 1:
-            A = _build_agraph(sub, gen, f"Arbre généalogique — Famille {branch}")
-            _render(A, str(out / f"family_tree_{branch.lower()}.png"))
+            A = _build_agraph(sub, gen, f"Family tree \u2014 {group}", border_colors, fill_colors)
+            _render(A, str(out / f"family_tree_{group.lower()}.png"))
 
 
-def main(input_path: str, output_dir: str, prog: str = "dot") -> None:
+def _load_book_config(path: str) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def main(input_path: str, output_dir: str, prog: str = "dot",
+         book_config_path: str = "book_config.json") -> None:
     G = nx.read_graphml(input_path)
-    # GraphML reads everything as strings; convert boolean-like attributes
     for node in G.nodes():
         data = G.nodes[node]
         if isinstance(data.get("uncertain"), str):
@@ -230,7 +264,8 @@ def main(input_path: str, output_dir: str, prog: str = "dot") -> None:
         if isinstance(data.get("directed"), str):
             data["directed"] = data["directed"].lower() == "true"
 
-    visualize_family_trees(G, output_dir)
+    book_config = _load_book_config(book_config_path)
+    visualize_family_trees(G, output_dir, book_title=book_config["title"])
 
 
 if __name__ == "__main__":
@@ -238,5 +273,6 @@ if __name__ == "__main__":
     parser.add_argument("--input", default="output/graph.graphml", help="Input GraphML path")
     parser.add_argument("--output", default="output", help="Output directory for tree images")
     parser.add_argument("--prog", default="dot", help="Graphviz layout program (unused, kept for compat)")
+    parser.add_argument("--book-config", default="book_config.json", help="Book configuration JSON")
     args = parser.parse_args()
-    main(args.input, args.output, args.prog)
+    main(args.input, args.output, args.prog, args.book_config)

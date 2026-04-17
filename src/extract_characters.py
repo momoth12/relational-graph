@@ -1,8 +1,5 @@
-"""Extract characters from each chapter using GPT-4o.
+"""Step 2 — Extract characters from each chapter using GPT-4o."""
 
-Sends each chapter to the LLM and asks for structured character data.
-Caches LLM responses per chapter to avoid redundant API calls.
-"""
 
 import argparse
 import hashlib
@@ -16,37 +13,42 @@ from tqdm import tqdm
 
 load_dotenv()
 
-SYSTEM_PROMPT = """You are a literary analyst specializing in 19th-century French literature.
-You will receive a chapter from Émile Zola's "La Fortune des Rougon".
+SYSTEM_PROMPT_TEMPLATE = """You are a literary analyst.
+You will receive a chapter from "{title}" by {author}.
 
 Extract ALL named characters mentioned in this chapter. For each character, provide:
 - "name": the most complete form of their name as it appears in the text
 - "aliases": list of other names, titles, or references used for this character in this chapter
-  (e.g., "le docteur", "le père Rougon", first name only, etc.)
+  (e.g., titles, nicknames, first name only, etc.)
 - "description": a brief description based on what this chapter reveals about them
 
 You MUST return a JSON object with a single key "characters" containing an array of character objects.
 
 Example:
-{"characters": [
-  {"name": "Pierre Rougon", "aliases": ["Rougon", "Pierre"], "description": "Ambitious merchant, head of the Rougon family"},
-  {"name": "Silvère Mouret", "aliases": ["Silvère"], "description": "Young worker and republican insurgent"}
-]}
+{{"characters": [
+  {{"name": "Jean Dupont", "aliases": ["Dupont", "Jean"], "description": "A merchant involved in local politics"}},
+  {{"name": "Marie Martin", "aliases": ["Marie"], "description": "A young woman from the village"}}
+]}}
 
-If no named characters appear in the chapter, return: {"characters": []}
+If no named characters appear in the chapter, return: {{"characters": []}}
 
 Important:
 - Include ALL named characters, even if only briefly mentioned
 - Use the most complete name form available in the text
 - Do NOT invent information not present in the chapter
 - Characters referred to only by title/role without a name should use that title as name
-  (e.g., "le commandant", "le garde champêtre")
+  (e.g., "the commander", "the doctor")
 - Each entry MUST have "name" (string), "aliases" (list of strings), and "description" (string)
 """
 
 
+def _load_book_config(path: str) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
 def extract_characters_from_chapter(
-    client: OpenAI, chapter_key: str, chapter_text: str, cache_dir: Path
+    client: OpenAI, chapter_key: str, chapter_text: str, cache_dir: Path,
+    system_prompt: str = "",
 ) -> list[dict]:
     """Extract characters from a single chapter, with caching."""
     cache_file = cache_dir / f"characters_{chapter_key}.json"
@@ -58,7 +60,7 @@ def extract_characters_from_chapter(
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Chapter: {chapter_key}\n\n{chapter_text}"},
         ],
         temperature=0.1,
@@ -68,7 +70,6 @@ def extract_characters_from_chapter(
     raw = response.choices[0].message.content.strip()
     parsed = json.loads(raw)
 
-    # Extract the characters list from the response object
     if isinstance(parsed, dict):
         characters = parsed.get("characters", [])
         if not isinstance(characters, list):
@@ -78,7 +79,7 @@ def extract_characters_from_chapter(
     else:
         raise ValueError(f"Unexpected LLM response format for {chapter_key}: {raw[:200]}")
 
-    # Validate each entry is a proper character dict, not a flat string
+    # Validate entries
     validated = []
     for item in characters:
         if isinstance(item, dict) and "name" in item:
@@ -86,8 +87,7 @@ def extract_characters_from_chapter(
             item.setdefault("description", "")
             validated.append(item)
         elif isinstance(item, str):
-            # LLM returned a flat string; skip it (bad response)
-            print(f"  [{chapter_key}] WARNING: skipping flat string '{item}', expected object")
+            print(f"  [{chapter_key}] WARNING: skipping flat string '{item}'")
     parsed = validated
 
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -95,14 +95,19 @@ def extract_characters_from_chapter(
     return parsed
 
 
-def main(input_path: str, output_path: str, cache_dir: str = "data/cache") -> dict:
+def main(input_path: str, output_path: str, cache_dir: str = "data/cache",
+         book_config_path: str = "book_config.json") -> dict:
     chapters = json.loads(Path(input_path).read_text(encoding="utf-8"))
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     cache = Path(cache_dir)
+    book_config = _load_book_config(book_config_path)
+    system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
+        title=book_config["title"], author=book_config["author"]
+    )
 
     raw_characters = {}
     for key, text in tqdm(chapters.items(), desc="Extracting characters", unit="ch"):
-        chars = extract_characters_from_chapter(client, key, text, cache)
+        chars = extract_characters_from_chapter(client, key, text, cache, system_prompt)
         raw_characters[key] = chars
         tqdm.write(f"  [{key}] Found {len(chars)} characters")
 
@@ -120,5 +125,6 @@ if __name__ == "__main__":
     parser.add_argument("--input", default="data/chapters.json", help="Chapters JSON path")
     parser.add_argument("--output", default="data/raw_characters.json", help="Output JSON path")
     parser.add_argument("--cache-dir", default="data/cache", help="Cache directory for LLM responses")
+    parser.add_argument("--book-config", default="book_config.json", help="Book configuration JSON")
     args = parser.parse_args()
-    main(args.input, args.output, args.cache_dir)
+    main(args.input, args.output, args.cache_dir, args.book_config)
