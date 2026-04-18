@@ -1,4 +1,4 @@
-"""Step 5b — Clean, validate and enrich relationships using o3-mini."""
+# Clean, validate and enrich relationships using o3-mini reasonning model
 
 
 import argparse
@@ -12,7 +12,7 @@ from openai import OpenAI
 load_dotenv()
 
 TYPE_MAP = {
-    # Canonical types (pass through)
+    # Canonical types 
     "parent_child": "parent_child",
     "spouse": "spouse",
     "sibling": "sibling",
@@ -26,7 +26,7 @@ TYPE_MAP = {
     "employer_employee": "employer_employee",
     "neighbor": "neighbor",
     "acquaintance": "acquaintance",
-    # Non-canonical → canonical
+    # Non-canonical -> canonical
     "uncle_niece": "uncle_nephew",
     "cousin": "cousin",
     "cousins": "cousin",
@@ -58,13 +58,13 @@ CRITICAL METHODOLOGY — Follow these steps IN ORDER:
 
 STEP 1: Build a mental family model.
 Read ALL character descriptions first. Extract every family fact:
-- "son of X and Y" → X is parent, Y is parent, the described character is the child
-- "daughter of X" → X is parent
-- "mother/father of X" → described character is parent, X is child
-- "married to X" / "wife/husband of X" → spouse
-- "brother/sister of X" → sibling
-- "uncle/aunt of X" → uncle_nephew (uncle=source, nephew=target)
-- "grandfather/grandmother of X" → grandparent_grandchild
+- "son of X and Y" -> X is parent, Y is parent, the described character is the child
+- "daughter of X" -> X is parent
+- "mother/father of X" -> described character is parent, X is child
+- "married to X" / "wife/husband of X" -> spouse
+- "brother/sister of X" -> sibling
+- "uncle/aunt of X" -> uncle_nephew (uncle=source, nephew=target)
+- "grandfather/grandmother of X" -> grandparent_grandchild
 
 STEP 2: Validate each extracted relationship against your family model.
 A) Fix wrong types: if the descriptions contradict the type, correct it.
@@ -74,7 +74,7 @@ B) Fix reversed directions: for directed types, source MUST be the ascendant/sup
    - uncle_nephew: source=uncle/aunt, target=nephew/niece
    - employer_employee: source=employer, target=employee
 C) Remove false positives: delete edges that contradict the descriptions.
-   A parent and their child can NEVER be siblings. If A→B is parent_child, delete any sibling edge between A and B.
+   A parent and their child can NEVER be siblings. If A->B is parent_child, delete any sibling edge between A and B.
 D) Remove duplicate directed edges: for each directed pair, there must be exactly ONE edge with the correct direction.
 
 STEP 3: Add missing relationships from the descriptions.
@@ -186,7 +186,7 @@ def llm_validate(rels: list[dict], characters: list[dict]) -> list[dict]:
 
     print(f"  LLM returned {len(validated)} relationships")
 
-    # Cache the result
+    
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(json.dumps(validated, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -235,7 +235,7 @@ def clean(rels: list[dict], characters: list[dict]) -> list[dict]:
     print("Step 4: Deduplicate")
     before = len(rels)
     rels = dedup(rels)
-    print(f"  {before} → {len(rels)} edges")
+    print(f"  {before} -> {len(rels)} edges")
 
     rels.sort(key=lambda r: (r["type"], r["source"], r["target"]))
 

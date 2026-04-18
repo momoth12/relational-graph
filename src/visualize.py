@@ -31,7 +31,7 @@ EDGE_STYLES = {
 
 def _assign_generations(G: nx.DiGraph) -> dict[str, int]:
     """BFS from roots (gen 0) along parent_child edges."""
-    # parent→child adjacency
+    # parent->child adjacency
     children_of: dict[str, list[str]] = {}
     parents_of: dict[str, list[str]] = {}
     for u, v, d in G.edges(data=True):
@@ -190,7 +190,7 @@ def _build_agraph(G: nx.DiGraph, gen: dict[str, int], title: str,
         idx += 1
 
     edge_labels = {
-        "parent_child": "Parent → Child",
+        "parent_child": "Parent -> Child",
         "spouse": "Spouse",
         "sibling": "Sibling",
     }

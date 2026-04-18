@@ -1,4 +1,4 @@
-"""Step 6 — Build a NetworkX graph from characters and relationships."""
+#Build a NetworkX graph from characters and relationships.
 
 
 import argparse
@@ -112,7 +112,7 @@ def main(
     if low_conf:
         print(f"Low-confidence edges ({len(low_conf)}):")
         for u, v, d in low_conf:
-            print(f"  {u} → {v} [{d['relationship_type']}] conf={d['confidence']}")
+            print(f"  {u} -> {v} [{d['relationship_type']}] conf={d['confidence']}")
 
     return G
 

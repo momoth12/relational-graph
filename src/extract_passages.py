@@ -1,4 +1,4 @@
-"""Step 4 — Extract relationship-revealing passages from each chapter."""
+#Code to extract passages in the book where we talk about relationships
 
 
 import argparse
@@ -49,6 +49,8 @@ IMPORTANT:
 - Be thorough: extract ALL passages that reveal or imply a relationship
 - Do NOT extract passages that merely mention a character without relationship context
 """
+
+
 
 
 def _load_book_config(path: str) -> dict:
@@ -127,7 +129,7 @@ def extract_passages_from_chapter(
     char_names = [c["canonical_name"] for c in characters]
     char_list_str = "\n".join(f"- {name}" for name in char_names)
 
-    # Split long chapters to avoid output truncation
+    # Split long chapters to avoid output problems as discussed in the meeting
     CHUNK_SIZE = 30000
     if len(chapter_text) > CHUNK_SIZE:
         num_parts = (len(chapter_text) // CHUNK_SIZE) + 1
@@ -156,6 +158,9 @@ def extract_passages_from_chapter(
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(parsed, ensure_ascii=False, indent=2), encoding="utf-8")
     return parsed
+
+
+
 
 
 def main(
@@ -188,6 +193,13 @@ def main(
 
     print(f"Total: {total} relationship passages across {len(chapters)} chapters")
     return all_passages
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

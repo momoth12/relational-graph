@@ -1,4 +1,4 @@
-"""Step 3 — Merge per-chapter characters into a canonical deduplicated list."""
+# Merging  per-chapter characters into a canonical deduplicated list
 
 
 import argparse

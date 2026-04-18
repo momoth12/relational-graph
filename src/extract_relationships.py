@@ -1,4 +1,4 @@
-"""Step 5 — Extract structured relationships from passages using GPT-4o."""
+# Extract structured relationships from passages using GPT-4o.
 
 
 import argparse
@@ -45,7 +45,7 @@ For each relationship, provide:
 - "source": canonical name of the first character (use EXACT names from the provided list)
 - "target": canonical name of the second character (use EXACT names from the provided list)
 - "type": one of: {types}
-- "directed": true if the relationship is asymmetric (parent→child, employer→employee, etc.)
+- "directed": true if the relationship is asymmetric (parent->child, employer->employee, etc.)
 - "passage": a SHORT quote from the text that evidences this relationship (max 100 chars)
 - "confidence": 0.0 to 1.0 — how confident you are this relationship exists
 
@@ -261,7 +261,7 @@ def main(
     out.write_text(json.dumps(relationships, ensure_ascii=False, indent=2), encoding="utf-8")
 
     for r in relationships:
-        arrow = "→" if r["directed"] else "—"
+        arrow = "->" if r["directed"] else "--"
         print(f"  {r['source']} {arrow} {r['target']} [{r['type']}] (x{r['weight']}, conf={r['confidence']})")
 
     return relationships

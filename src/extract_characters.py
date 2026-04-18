@@ -1,4 +1,4 @@
-"""Step 2 — Extract characters from each chapter using GPT-4o."""
+#Extracting all the characters from each chapter with GPT4o
 
 
 import argparse

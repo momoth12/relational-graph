@@ -1,7 +1,4 @@
-"""Split La Fortune des Rougon into chapters.
-
-Reads the source text and splits it into Preface + 7 chapters,
-outputting a JSON file with chapter keys and text values.
+"""Split the book into chapters into chapters (Preface + 7 chapters) outputting a JSON file with chapter keys and text values.
 """
 
 import argparse
@@ -16,23 +13,23 @@ CHAPTER_PATTERN = re.compile(r"^(I{1,3}|IV|VI{0,2}|VII)$")
 def split_chapters(text: str) -> dict[str, str]:
     """Split the novel text into named chapters.
 
-    Returns a dict like {"preface": "...", "1": "...", ..., "7": "..."}.
+    Returns a dict  {"preface": "...", "1": "...", ..., "7": "..."}.
     """
     lines = text.splitlines(keepends=True)
 
-    # Find the PRÉFACE heading (actual chapter start, not the TOC one)
+    
     preface_start = None
     for i, line in enumerate(lines):
         stripped = line.strip()
         if stripped == "PRÉFACE" and i > 80:
-            # Skip the TOC entry; the actual preface heading is after line 80
             preface_start = i
             break
 
     if preface_start is None:
         raise ValueError("Could not find PRÉFACE heading in the text")
 
-    # Find chapter headings (roman numerals on their own line, after the TOC)
+    # Find chapter headings (roman numerals)
+
     chapter_starts: list[tuple[str, int]] = []
     for i, line in enumerate(lines):
         stripped = line.strip()
@@ -42,16 +39,16 @@ def split_chapters(text: str) -> dict[str, str]:
 
     if len(chapter_starts) != 7:
         raise ValueError(
-            f"Expected 7 chapter headings, found {len(chapter_starts)}: "
+            f"Error found {len(chapter_starts)}: "
             f"{[c[1] for c in chapter_starts]}"
         )
 
-    # Find the end of the novel text (FIN marker)
     fin_line = len(lines)
     for i in range(len(lines) - 1, -1, -1):
         if lines[i].strip() == "FIN":
             fin_line = i
             break
+
 
     # Build sections
     boundaries = [("preface", preface_start)] + chapter_starts
@@ -61,7 +58,7 @@ def split_chapters(text: str) -> dict[str, str]:
             end = boundaries[idx + 1][1]
         else:
             end = fin_line
-        # Skip the heading line itself and any blank lines right after
+
         content_start = start + 1
         chapter_text = "".join(lines[content_start:end]).strip()
         chapters[key] = chapter_text
